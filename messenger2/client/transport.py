@@ -1,10 +1,15 @@
 import threading
-from PySide2.QtCore import QObject, Signal
+from PySide2.QtCore import QObject, Signal, Slot
 import socket
 from messenger2.protocols.JIM import JIM
 import config
 import time
 from messenger2.decorators import log_exception
+from messenger2.databases.database import ClientDatabase
+from messenger2.common.security.keys import get_public_key, get_client_server_public_key, save_server_public_key, generate_pair
+from messenger2.common.security.encript_data import encript_server_data
+from messenger2.common.security.decript_data import decript_data
+from json import JSONDecodeError
 
 LOCK = threading.Lock()
 
@@ -13,35 +18,48 @@ class ClientTransport(threading.Thread, QObject):
 
     new_message = Signal(str)
     alert_message = Signal(str)
+    update_contact_list = Signal()
     connection_lost = Signal()
 
-    def __init__(self, ip_address, port, database, username):
+    def __init__(self, ip_address, port, username, password):
         QObject.__init__(self)
         super(ClientTransport, self).__init__()
 
-        self.database = database
+        self.database = None
         self.port = port
         self.address = ip_address
         self.username = username
-
+        self.password = password
         self.socket = None
         self.is_active = False
-        self.connect_to_server()
 
     def connect_to_server(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.settimeout(5)
         self.socket.connect((self.address, self.port))
 
-        self.join_to_server()
-        self.get_contacts()
-        self.is_active = True
+        result = self.join_to_server()
+        if result:
+            engine = f"{config.CLIENT_DATABASE_ENGINE}{self.username}.db3"
+            self.database = ClientDatabase(engine=engine)
+            self.is_active = True
 
     def proceed_answer(self):
-        protocol = self.get_answer()
+        response = self.get_answer()
+        protocol = self.get_protocol_from_response(response)
         msg, send_to, send_from = protocol.get_message_info()
         print("get_answer")
         print(protocol.request.get("action"))
+
+        if protocol.presence_type:
+            print("presense")
+            server_key = get_client_server_public_key(to_str=True)
+            server_public_key = protocol.get_public_key()
+            if server_public_key == server_key:
+                print("server is equal")
+            if server_key is None or server_public_key != server_key:
+                print("saving server key")
+                save_server_public_key(server_public_key)
 
         if protocol.response_type:
             print("response")
@@ -71,61 +89,105 @@ class ClientTransport(threading.Thread, QObject):
         elif protocol.del_type:
             print("delete")
             self.database.del_client(login=msg)
+            self.database.delete_contact_history(login=msg)
 
         elif protocol.alert_type:
+            print("alert")
+            print(protocol.get_info())
+            if protocol.get_info() == "delete_contact_history":
+                print(send_from)
+                self.database.delete_contact_history(login=send_from)
+                self.update_contact_list.emit()
             self.alert_message.emit(msg)
             return False
 
     def get_answer(self):
         response = self.socket.recv(config.MAX_POCKET_SIZE)
         # print(response)
-        protocol = JIM(response)
+        return response
+
+    def get_protocol_from_response(self, response):
+        try:
+            protocol = JIM(request=response)
+        except (UnicodeDecodeError, JSONDecodeError):
+            response = decript_data(username=self.username, data=response)
+            protocol = JIM(request=response)
         return protocol
 
     @log_exception(Exception)
-    def send_request(self, action, **kwargs):
+    def send_request(self, request):
         print("sending request")
         try:
             with LOCK:
                 print("get request")
-                request = JIM().get_request(action, **kwargs)
+                # request = JIM().get_request(action, **kwargs)
                 print(request)
                 print("send request")
                 self.socket.send(request)
                 return self.proceed_answer()
         except Exception:
-            pass
+            print("error")
 
     def join_to_server(self):
         print("join")
-        self.send_request(action=JIM.JOIN, user=self.username)
+        self.presence()
+        request = JIM().get_request(action=JIM.JOIN, user=self.username, password=self.password)
+        return self.send_request(request)
+
+    def presence(self):
+        username_pk = get_public_key(username=self.username, to_str=True)
+        if username_pk is None:
+            generate_pair(username=self.username)
+            username_pk = get_public_key(username=self.username, to_str=True)
+        request = JIM().get_request(action=JIM.PRESENCE, user=self.username, public_key=username_pk)
+        self.send_request(request)
+
+    @Slot(str, str, str)
+    def send_alert(self, msg, send_to, send_from):
+        print("send_alert")
+        print(msg, send_to, send_from)
+        request = JIM().get_request(action=JIM.ALERT, user=self.username, send_to=send_to, message=msg,
+                                    send_from=send_from, info="delete_contact_history")
+        print(request)
+        self.send_request(request)
 
     def get_contacts(self):
         print("get_contacts")
-        self.send_request(action=JIM.CONTACTS, send_from=self.username, user=self.username)
+        request = JIM().get_request(action=JIM.CONTACTS, send_from=self.username, user=self.username)
+        request = encript_server_data(request)
+        self.send_request(request)
 
     def get_all_contacts(self):
         print("get_all_contacts")
-        contacts = self.send_request(action=JIM.CONTACTS)
+        request = JIM().get_request(action=JIM.CONTACTS, user=self.username)
+        request = encript_server_data(request)
+        contacts = self.send_request(request)
         return contacts
 
     def add_contact(self, username):
         print("add_contact")
-        self.send_request(action=JIM.ADD, send_from=self.username, message=username, user=self.username)
+        request = JIM().get_request(action=JIM.ADD, send_from=self.username, message=username, user=self.username)
+        request = encript_server_data(request)
+        self.send_request(request)
 
     def del_contact(self, username):
         print("del_contacts")
-        self.send_request(action=JIM.DELETE, send_from=self.username, message=username, user=self.username)
+        request = JIM().get_request(action=JIM.DELETE, send_from=self.username, message=username, user=self.username)
+        self.send_request(request)
 
     def send_message(self, message, username, to):
         print("send_message")
-        result = self.send_request(action=JIM.MESSAGE, send_from=username, send_to=to, message=message, user=self.username)
+        request = JIM().get_request(action=JIM.MESSAGE, send_from=username, send_to=to, message=message, user=self.username)
+        request = encript_server_data(request)
+        result = self.send_request(request)
         if result:
             self.database.save_msg(msg=message, user=username, to=to)
 
     def quit(self):
         print("quit")
-        self.send_request(action=JIM.QUIT, user=self.username)
+        request = JIM().get_request(action=JIM.QUIT, user=self.username)
+        request = encript_server_data(request)
+        self.send_request(request)
 
     def run(self) -> None:
         print("start transport")

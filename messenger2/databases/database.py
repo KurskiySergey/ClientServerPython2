@@ -1,8 +1,8 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, create_engine, or_
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, create_engine, or_, Text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
-from config import TEST_DATABASE_ENGINE
+from config import TEST_DATABASE_ENGINE, USER_PORT, USER_ADDRESS
 
 
 class ServerDatabase:
@@ -11,21 +11,19 @@ class ServerDatabase:
     class AllUsers(Base):
         __tablename__ = "all_users"
         id = Column(Integer, primary_key=True)
-        name = Column(String, default="")
-        surname = Column(String, default="")
         login = Column(String, default="", unique=True)
         password = Column(String)
+        public_key = Column(Text)
         last_login = Column(DateTime, default=datetime.datetime.now())
 
-        def __init__(self, name, surname, login, password):
-            self.name = name
-            self.surname = surname
+        def __init__(self, login, password, public_key="user_public_key"):
             self.login = login
             self.password = password
+            self.public_key = public_key
             self.last_login = datetime.datetime.now()
 
         def __repr__(self):
-            return f"<AllUsers({self.name}, {self.surname}, {self.login}, {self.password})>"
+            return f"<AllUsers({self.login}, {self.password}, {self.public_key})>"
 
     class UserContacts(Base):
         __tablename__ = "contacts"
@@ -65,7 +63,7 @@ class ServerDatabase:
         ip_address = Column(String)
         log_time = Column(DateTime, default=datetime.datetime.now())
 
-        def __init__(self, user_id, port, address):
+        def __init__(self, user_id, port=USER_PORT, address=USER_ADDRESS):
             self.user_id = user_id
             self.port = port
             self.ip_address = address
@@ -75,7 +73,7 @@ class ServerDatabase:
             return f"<UsersHistory({self.user_id}, {self.port}, {self.ip_address}, {self.log_time})>"
 
     def __init__(self, engine):
-        self._engine = create_engine(engine)
+        self._engine = create_engine(engine, connect_args={'check_same_thread': False})
         self.Base.metadata.create_all(self._engine)
         self._session = sessionmaker(bind=self._engine)
 
@@ -91,11 +89,49 @@ class ServerDatabase:
         session.commit()
         session.close()
 
+    def update_user_history(self, username, ip_address, port):
+        session = self.session
+        user = session.query(self.AllUsers).filter_by(login=username)
+        if user.count() != 0:
+            history = session.query(self.UsersHistory).filter_by(user_id=user.first().id)
+            if history.count() == 0:
+                user_history = self.UsersHistory(user_id=user.first().id, address=ip_address, port=port)
+                session.add(user_history)
+            else:
+                history.update(
+                    {self.UsersHistory.log_time: datetime.datetime.now(), self.UsersHistory.ip_address: ip_address,
+                     self.UsersHistory.port: port})
+            session.commit()
+        session.close()
+
     def get_user(self, login):
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=login).first()
         session.close()
         return user
+
+    def save_user_pk(self, username, public_key):
+        session = self.session
+        session.query(self.AllUsers).filter_by(login=username).update({self.AllUsers.public_key: public_key})
+        session.commit()
+        session.close()
+
+    def get_user_pk(self, username):
+        session = self.session
+        user = session.query(self.AllUsers).filter_by(login=username).first()
+        public_key = user.public_key
+        session.close()
+        return public_key
+
+    def register_user(self, login, password):
+        session = self.session
+        user = self.AllUsers(login=login, password=password)
+        session.add(user)
+        user = session.query(self.AllUsers).filter_by(login=login).first()
+        user_history = self.UsersHistory(user_id=user.id)
+        session.add(user_history)
+        session.commit()
+        session.close()
 
     def delete_active_user(self, login):
         session = self.session
@@ -129,7 +165,7 @@ class ServerDatabase:
         session = self.session
         contacts = session.query(self.AllUsers.login).all()
         session.close()
-        return [contact[0] if contact[0] != username else '' for contact in contacts]
+        return [contact[0] for contact in contacts]
 
     def get_user_contacts(self, username):
         session = self.session
@@ -157,6 +193,15 @@ class ServerDatabase:
             active_users = session.query(self.ActiveUsers).all()
         session.close()
         return active_users
+
+    def check_active_user(self, username):
+        user = self.get_user(username)
+        session = self.session
+        active_user = session.query(self.ActiveUsers).filter_by(user_id=user.id).count()
+        session.close()
+        if active_user != 0:
+            return True
+        return False
 
     def clear_db(self):
         session = self.session
@@ -199,6 +244,28 @@ class ServerDatabase:
         session.close()
         return False
 
+    def check_user(self, login):
+        session = self.session
+        user = session.query(self.AllUsers).filter_by(login=login)
+        session.close()
+        return True if user.count() != 0 else False
+
+    def check_user_password(self, login, password):
+        session = self.session
+        user = session.query(self.AllUsers).filter_by(login=login).first()
+        session.close()
+        if password == user.password:
+            return True
+        else:
+            return False
+
+    def add_user(self, login, password):
+        session = self.session
+        user = self.AllUsers(login=login, password=password)
+        session.add(user)
+        session.commit()
+        session.close()
+
 
 class ClientDatabase:
 
@@ -237,7 +304,7 @@ class ClientDatabase:
         return self._session()
 
     def __init__(self, engine):
-        self._engine = create_engine(engine)
+        self._engine = create_engine(engine, connect_args={'check_same_thread': False})
         self.Base.metadata.create_all(self._engine)
         self._session = sessionmaker(bind=self._engine)
 
@@ -290,6 +357,12 @@ class ClientDatabase:
         history = session.query(self.HistoryMessage).filter(or_(self.HistoryMessage.user==login, self.HistoryMessage.to==login)).order_by(self.HistoryMessage.when).all()
         session.close()
         return history
+
+    def delete_contact_history(self, login):
+        session = self.session
+        session.query(self.HistoryMessage).filter(or_(self.HistoryMessage.user==login, self.HistoryMessage.to==login)).delete()
+        session.commit()
+        session.close()
 
     def create_user(self, name, surname, login, password):
         pass

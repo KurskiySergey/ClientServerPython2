@@ -3,7 +3,7 @@ import traceback
 from ipaddress import ip_address
 
 WAY = traceback.format_stack()[0].split()[1].strip('",').split('/')[-1]
-if WAY == 'server.py':
+if WAY == 'server_start.py':
     LOGGER = "server_logger"
 else:
     LOGGER = "client_logger"

@@ -1,10 +1,11 @@
 import logging
 from messenger2.logs.log_configs import client_log_config, server_log_config
+from messenger2.protocols.JIM import JIM
 import traceback
 import sys
 
 WAY = traceback.format_stack()[0].split()[1].strip('",').split('/')[-1]
-if WAY == 'server.py':
+if WAY == 'server_start.py':
     LOGGER = logging.getLogger(server_log_config.SERVER_LOGGER)
 else:
     LOGGER = logging.getLogger(client_log_config.CLIENT_LOGGER)

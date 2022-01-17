@@ -31,12 +31,16 @@ class JIM(BaseProtocol):
         'send_from',
         'send_to',
         'user',
+        "password",
         'response',
         'alert',
-        "login"
+        "login",
+        "public_key",
+        "info"
     ]
 
     MESSAGE = "msg"
+    PRESENCE = "presence"
     JOIN = "join"
     ADD = "add"
     DELETE = "del"
@@ -78,6 +82,7 @@ class JIM(BaseProtocol):
             if kwargs is not None:
                 request.update(kwargs)
             if JIM.__check_request(request):
+                print("true")
                 self.request = request
                 return json.dumps(request).encode(JIM.ENCODING)
             else:
@@ -90,6 +95,7 @@ class JIM(BaseProtocol):
             return json.dumps(request).encode(JIM.ENCODING)
 
     def get_response(self):
+        self.__response["user"] = self.get_user()
         print(self.__response)
         return json.dumps(self.__response).encode(JIM.ENCODING)
 
@@ -104,12 +110,38 @@ class JIM(BaseProtocol):
             'action': action
         })
 
+    def set_info(self, info):
+        self.__response.update({
+            "info": info
+        })
+
+    def get_info(self):
+        return self.request.get("info")
+
     def get_message_info(self):
         return self.request.get('message'), self.request.get('send_to'), self.request.get('send_from')
 
     def get_user(self):
         user = self.request.get('user')
         return user
+
+    def set_user(self, user):
+        self.__response.update(
+            {"user": user}
+        )
+
+    def get_password(self):
+        password = self.request.get("password")
+        return password
+
+    def get_public_key(self):
+        public_key = self.request.get("public_key")
+        return public_key
+
+    def set_public_key(self, public_key):
+        self.__response.update({
+            'public_key': public_key
+        })
 
     def set_message(self, message, send_from=None):
         if send_from is None:
@@ -149,7 +181,7 @@ class JIM(BaseProtocol):
                     return False
 
             if key == 'message':
-                print(request)
+                # print(request)
                 if len(request.get(key)) > JIM.MAX_MESSAGE_LENGTH:
                     return False
 
@@ -194,3 +226,7 @@ class JIM(BaseProtocol):
     @property
     def alert_type(self):
         return True if self.request.get("action") == "error" else False
+
+    @property
+    def response_alert_type(self):
+        return True if self.__response.get("action") == "error" else False

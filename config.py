@@ -27,7 +27,10 @@ MAX_CONNECTIONS = 5
 
 LOG_DIR = os.path.join(BASE_DIR, 'messenger2\\logs')
 DATABASE_DIR = os.path.join(BASE_DIR, "messenger2\\databases")
+CLIENT_DIR = os.path.join(BASE_DIR, "messenger2\\client")
+SERVER_DIR = os.path.join(BASE_DIR, "messenger2\\server")
 CLIENT_UI_DIR = "client\\gui\\ui"
+SERVER_UI_DIR = "server\\gui\\ui"
 DATABASE_ENGINE = f'sqlite:///{DATABASE_PATH}\\{DATABASE_NAME}'
 CLIENT_DATABASE_ENGINE = 'sqlite:///client\\client_base_'
 TEST_DATABASE_ENGINE = 'sqlite:///test_server_base.db3'

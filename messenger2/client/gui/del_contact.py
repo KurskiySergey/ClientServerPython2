@@ -8,6 +8,7 @@ import os
 class DeleteWindow(QDialog):
 
     delete_contact = Signal(str)
+    send_alert = Signal(str, str, str)
 
     def __init__(self, database, transport, contact):
         super(DeleteWindow, self).__init__()
@@ -15,6 +16,7 @@ class DeleteWindow(QDialog):
         self.transport = transport
         self.contact = contact
         self.alert = None
+        self.send_alert.connect(self.transport.send_alert)
         self.setUI(os.path.join(config.CLIENT_UI_DIR, "del_client.ui"))
 
     def setUI(self, ui_file):
@@ -30,6 +32,7 @@ class DeleteWindow(QDialog):
 
     def yes(self):
         self.delete_contact.emit(self.contact)
+        self.send_alert.emit(f"Пользователь {self.contact} удалил вас из контактов", self.contact, self.transport.username)
         self.close()
 
     def no(self):

@@ -1,22 +1,20 @@
 import argparse
 
 from PySide2.QtWidgets import QApplication
-from messenger2.databases.database import ClientDatabase
-from messenger2.client.transport import ClientTransport
-from messenger2.client.gui.client_window import ClientWindow
-import sys
-import os
+from messenger2.client.gui.welcome import WelcomeWindow
 
 import config
 from random import randint
+import sys
 
 
-def get_parameters(address=None, port=None, username=None):
+def get_parameters(address=None, port=None, username=None, password=None):
 
     parser = argparse.ArgumentParser(description="client parser")
     parser.add_argument("-p", "--port", type=int, default=config.USER_PORT, help="port name")
     parser.add_argument("-a", "--address", type=str, default=config.USER_ADDRESS, help="address name")
     parser.add_argument("-u", "--username", type=str, default=f"Guest_{randint(0, 15)}", help="username")
+    parser.add_argument("-k", "--key", type=str, help="password")
     args = parser.parse_args()
 
     if address is None:
@@ -34,19 +32,18 @@ def get_parameters(address=None, port=None, username=None):
     else:
         user_param = username
 
-    return address_param, port_param, user_param
+    if password is None:
+        password_param = args.key
+    else:
+        password_param = password
+
+    return address_param, port_param, user_param, password_param
 
 
-def start(ip=None, port=None, username=None):
-    ip, port, username = get_parameters(ip, port, username)
+def start(ip=None, port=None, username=None, password=None):
+    ip, port, username, password = get_parameters(ip, port, username, password)
     app = QApplication()
-    engine = f"{config.CLIENT_DATABASE_ENGINE}{username}.db3"
-    database = ClientDatabase(engine=engine)
-    transport = ClientTransport(ip_address=ip, port=port, database=database,
-                                username=username)
-    transport.setDaemon(True)
-    transport.start()
-    window = ClientWindow(database=database, transport=transport, username=username, ui_file=os.path.join(config.CLIENT_UI_DIR, "client.ui"))
+    window = WelcomeWindow(ip_address=ip, port=port, username=username, password=password)
     window.show()
     sys.exit(app.exec_())
 

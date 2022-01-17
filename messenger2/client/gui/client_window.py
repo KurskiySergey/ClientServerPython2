@@ -28,6 +28,7 @@ class ClientWindow(QMainWindow):
 
         self.transport.alert_message.connect(self.alert_msg)
         self.transport.new_message.connect(self.new_msg)
+        self.transport.update_contact_list.connect(self.show_contact_history)
         self.transport.get_contacts()
         self.get_contact_list()
 
@@ -144,6 +145,7 @@ class ClientWindow(QMainWindow):
 
         self.ui.contact_list.setModel(model)
 
+    @Slot()
     def show_contact_history(self, contact=None):
         if contact is None:
             login = self.ui.contact_list.currentIndex().data()

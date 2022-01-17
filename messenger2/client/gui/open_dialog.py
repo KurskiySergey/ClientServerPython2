@@ -9,6 +9,7 @@ class OpenWindow(QDialog):
 
     add_contact = Signal(str)
     select_history = Signal(str)
+    send_alert = Signal(str, str, str)
 
     def __init__(self, database, transport, contact, is_new):
         super(OpenWindow, self).__init__()
@@ -17,6 +18,7 @@ class OpenWindow(QDialog):
         self.contact = contact
         self.is_new = is_new
         self.alert = None
+        self.send_alert.connect(self.transport.send_alert)
         self.setUI(os.path.join(config.CLIENT_UI_DIR, "open_dialog.ui"))
 
     def setUI(self, ui_file):
@@ -40,6 +42,8 @@ class OpenWindow(QDialog):
         self.close()
 
     def no(self):
+        if self.is_new:
+            self.send_alert.emit("Пользователь отказался добавить вас в контакты", self.contact, self.transport.username)
         self.close()
 
     def close(self) -> bool:
