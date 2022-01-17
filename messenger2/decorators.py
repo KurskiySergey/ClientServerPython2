@@ -71,17 +71,14 @@ def login_required():
                                         return func(*args, **kwargs)
                                     else:
                                         LOGGER.info("Попытка неавторизированного доступа")
-                                        protocol.request["action"] = JIM.ALERT
-                                        return func(*args, **kwargs)
+                                        return 0
 
                             LOGGER.info("Попытка неавторизированного доступа")
-                            protocol.request["action"] = JIM.ALERT
-                            return func(*args, **kwargs)
+                            return 0
 
                         else:
                             LOGGER.info("Попытка неавторизированного доступа")
-                            protocol.request["action"] = JIM.ALERT
-                            return func(*args, **kwargs)
+                            return 0
 
             else:
                 LOGGER.critical("Несанкционированный запуск сервера")
