@@ -5,7 +5,7 @@ from messenger2.databases.database import ServerDatabase
 import logging
 from messenger2.protocols.JIM import JIM
 from messenger2.logs.log_configs import server_log_config
-from messenger2.decorators import log_exception
+from messenger2.decorators import log_exception, login_required
 import messenger2.descriptors as desc
 from messenger2.metaclasses import ServerVerifier
 import argparse
@@ -170,6 +170,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
         print("sending request")
         client.send(response)
 
+    @login_required()
     @log_exception(Exception)
     def proceed_event(self, protocol, addr, client):
         print(protocol)
