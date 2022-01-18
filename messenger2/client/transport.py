@@ -131,7 +131,10 @@ class ClientTransport(threading.Thread, QObject):
     def join_to_server(self):
         print("join")
         self.presence()
-        request = JIM().get_request(action=JIM.JOIN, user=self.username, password=self.password)
+        request = JIM().get_request(
+            action=JIM.JOIN,
+            user=self.username,
+            password=self.password)
         return self.send_request(request)
 
     def presence(self):
@@ -139,21 +142,32 @@ class ClientTransport(threading.Thread, QObject):
         if username_pk is None:
             generate_pair(username=self.username)
             username_pk = get_public_key(username=self.username, to_str=True)
-        request = JIM().get_request(action=JIM.PRESENCE, user=self.username, public_key=username_pk)
+        request = JIM().get_request(
+            action=JIM.PRESENCE,
+            user=self.username,
+            public_key=username_pk)
         self.send_request(request)
 
     @Slot(str, str, str)
     def send_alert(self, msg, send_to, send_from):
         print("send_alert")
         print(msg, send_to, send_from)
-        request = JIM().get_request(action=JIM.ALERT, user=self.username, send_to=send_to, message=msg,
-                                    send_from=send_from, info="delete_contact_history")
+        request = JIM().get_request(
+            action=JIM.ALERT,
+            user=self.username,
+            send_to=send_to,
+            message=msg,
+            send_from=send_from,
+            info="delete_contact_history")
         print(request)
         self.send_request(request)
 
     def get_contacts(self):
         print("get_contacts")
-        request = JIM().get_request(action=JIM.CONTACTS, send_from=self.username, user=self.username)
+        request = JIM().get_request(
+            action=JIM.CONTACTS,
+            send_from=self.username,
+            user=self.username)
         request = encript_server_data(request)
         self.send_request(request)
 
@@ -166,18 +180,31 @@ class ClientTransport(threading.Thread, QObject):
 
     def add_contact(self, username):
         print("add_contact")
-        request = JIM().get_request(action=JIM.ADD, send_from=self.username, message=username, user=self.username)
+        request = JIM().get_request(
+            action=JIM.ADD,
+            send_from=self.username,
+            message=username,
+            user=self.username)
         request = encript_server_data(request)
         self.send_request(request)
 
     def del_contact(self, username):
         print("del_contacts")
-        request = JIM().get_request(action=JIM.DELETE, send_from=self.username, message=username, user=self.username)
+        request = JIM().get_request(
+            action=JIM.DELETE,
+            send_from=self.username,
+            message=username,
+            user=self.username)
         self.send_request(request)
 
     def send_message(self, message, username, to):
         print("send_message")
-        request = JIM().get_request(action=JIM.MESSAGE, send_from=username, send_to=to, message=message, user=self.username)
+        request = JIM().get_request(
+            action=JIM.MESSAGE,
+            send_from=username,
+            send_to=to,
+            message=message,
+            user=self.username)
         request = encript_server_data(request)
         result = self.send_request(request)
         if result:

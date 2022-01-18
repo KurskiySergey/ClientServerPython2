@@ -50,14 +50,18 @@ class ClientWindow(QMainWindow):
         self.ui.send_btn.clicked.connect(self.send_msg)
         self.ui.clear_msg_btn.clicked.connect(self.clear_msg)
 
-        self.ui.contact_list.doubleClicked.connect(lambda: self.show_contact_history())
-        self.ui.history_list.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.contact_list.doubleClicked.connect(
+            lambda: self.show_contact_history())
+        self.ui.history_list.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
         self.ui.history_list.setWordWrap(True)
 
         self.ui.installEventFilter(self)
 
     def open_add_window(self):
-        self.add_window = AddWindow(database=self.database, transport=self.transport)
+        self.add_window = AddWindow(
+            database=self.database,
+            transport=self.transport)
         self.add_window.add_contact.connect(self.add_contact)
         self.add_window.show()
         print("add contact")
@@ -66,7 +70,10 @@ class ClientWindow(QMainWindow):
 
     def open_del_window(self):
         if self.active_contact is not None:
-            self.del_window = DeleteWindow(database=self.database, transport=self.transport, contact=self.active_contact)
+            self.del_window = DeleteWindow(
+                database=self.database,
+                transport=self.transport,
+                contact=self.active_contact)
             self.del_window.delete_contact.connect(self.del_contact)
             self.del_window.show()
             print("del contact")
@@ -77,9 +84,17 @@ class ClientWindow(QMainWindow):
 
     def open_dialog_window(self, new_contact):
         if self.database.check_contact(new_contact):
-            self.open_dialog = OpenWindow(database=self.database, transport=self.transport, contact=new_contact, is_new=False)
+            self.open_dialog = OpenWindow(
+                database=self.database,
+                transport=self.transport,
+                contact=new_contact,
+                is_new=False)
         else:
-            self.open_dialog = OpenWindow(database=self.database, transport=self.transport, contact=new_contact, is_new=True)
+            self.open_dialog = OpenWindow(
+                database=self.database,
+                transport=self.transport,
+                contact=new_contact,
+                is_new=True)
 
         self.open_dialog.add_contact.connect(self.add_contact)
         self.open_dialog.select_history.connect(self.show_contact_history)
@@ -89,7 +104,10 @@ class ClientWindow(QMainWindow):
         print("send msg")
         if self.active_contact is not None:
             msg = self.ui.msg_window.toPlainText()
-            self.transport.send_message(message=msg, username=self.username, to=self.active_contact)
+            self.transport.send_message(
+                message=msg,
+                username=self.username,
+                to=self.active_contact)
             self.show_contact_history()
             self.clear_msg()
         else:
@@ -117,7 +135,8 @@ class ClientWindow(QMainWindow):
         try:
             self.transport.add_contact(contact)
         except Exception:
-            self.alert = AlertWindow(info_msg="Не удалось добавить пользователя")
+            self.alert = AlertWindow(
+                info_msg="Не удалось добавить пользователя")
 
         finally:
             self.get_contact_list()
@@ -128,7 +147,8 @@ class ClientWindow(QMainWindow):
             self.transport.del_contact(contact)
             self.show_contact_history(contact="")
         except Exception:
-            self.alert = AlertWindow(info_msg="Не удалось удалить пользователя")
+            self.alert = AlertWindow(
+                info_msg="Не удалось удалить пользователя")
 
         finally:
             self.get_contact_list()
@@ -154,12 +174,14 @@ class ClientWindow(QMainWindow):
         else:
             self.active_contact = contact
         print(self.active_contact)
-        history_list = self.database.get_contact_history(login=self.active_contact)
+        history_list = self.database.get_contact_history(
+            login=self.active_contact)
 
         model = QStandardItemModel()
 
         for history in history_list:
-            msg = QStandardItem(f"{history.user} -> {history.msg} : {history.when}")
+            msg = QStandardItem(
+                f"{history.user} -> {history.msg} : {history.when}")
 
             if history.user == self.active_contact:
                 msg.setTextAlignment(Qt.AlignRight)
@@ -195,7 +217,11 @@ class ClientWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication()
     test_db = ClientDatabase(engine=config.TEST_DATABASE_ENGINE)
-    transport = ClientTransport(ip_address=config.USER_ADDRESS, port=config.USER_PORT, database=test_db, username="user")
+    transport = ClientTransport(
+        ip_address=config.USER_ADDRESS,
+        port=config.USER_PORT,
+        database=test_db,
+        username="user")
     transport.setDaemon(True)
     transport.start()
     window = ClientWindow(database=test_db, transport=transport)

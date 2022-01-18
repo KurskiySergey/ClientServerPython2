@@ -9,8 +9,18 @@ from messenger2.server.core import Server
 
 def get_parameters(address=None, port=None):
     parser = argparse.ArgumentParser(description="server parser")
-    parser.add_argument("-p", "--port", type=int, default=config.SERVER_PORT, help="port name")
-    parser.add_argument("-a", "--address", type=str, default=config.LISTEN_ADDRESS, help="address name")
+    parser.add_argument(
+        "-p",
+        "--port",
+        type=int,
+        default=config.SERVER_PORT,
+        help="port name")
+    parser.add_argument(
+        "-a",
+        "--address",
+        type=str,
+        default=config.LISTEN_ADDRESS,
+        help="address name")
     args = parser.parse_args()
 
     if address is None:
@@ -40,4 +50,3 @@ def start(ip=None, port=None):
 
 if __name__ == "__main__":
     start()
-

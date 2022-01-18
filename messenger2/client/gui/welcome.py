@@ -35,18 +35,27 @@ class WelcomeWindow(QDialog):
 
     def register_user(self):
         username = self.ui.user_edit.text()
-        password = get_hash_from_password(password=self.ui.pwd_edit.text(), salt=username)
+        password = get_hash_from_password(
+            password=self.ui.pwd_edit.text(), salt=username)
 
-        self.transport = ClientTransport(ip_address=self.ip_address, port=self.port,
-                                         username=username, password=password)
+        self.transport = ClientTransport(
+            ip_address=self.ip_address,
+            port=self.port,
+            username=username,
+            password=password)
         self.transport.alert_message.connect(self.show_alert)
         self.transport.connect_to_server()
         if self.transport.is_active:
             self.database = self.transport.database
             self.transport.setDaemon(True)
             self.transport.start()
-            window = ClientWindow(database=self.database, transport=self.transport, username=username,
-                                  ui_file=os.path.join(config.CLIENT_UI_DIR, "client.ui"))
+            window = ClientWindow(
+                database=self.database,
+                transport=self.transport,
+                username=username,
+                ui_file=os.path.join(
+                    config.CLIENT_UI_DIR,
+                    "client.ui"))
             window.show()
             self.close()
         else:

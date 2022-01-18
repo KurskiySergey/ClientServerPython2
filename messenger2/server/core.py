@@ -30,7 +30,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
         self.server_logger.info('Получение адреса и порта')
         if address is None or port is None:
-            self.address, self.port = self.get_parameters(address=address, port=port)
+            self.address, self.port = self.get_parameters(
+                address=address, port=port)
         else:
             self.address = address
             self.port = port
@@ -45,8 +46,18 @@ class Server(threading.Thread, metaclass=ServerVerifier):
     def get_parameters(self, address=None, port=None):
 
         parser = argparse.ArgumentParser(description="server parser")
-        parser.add_argument("-p", "--port", type=int, default=config.SERVER_PORT, help="port name")
-        parser.add_argument("-a", "--address", type=str, default=config.LISTEN_ADDRESS, help="address name")
+        parser.add_argument(
+            "-p",
+            "--port",
+            type=int,
+            default=config.SERVER_PORT,
+            help="port name")
+        parser.add_argument(
+            "-a",
+            "--address",
+            type=str,
+            default=config.LISTEN_ADDRESS,
+            help="address name")
         args = parser.parse_args()
 
         if address is None:
@@ -89,7 +100,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             except Exception:
                 pass
             else:
-                self.server_logger.info(f'Получили данные от клиента с адресом {addr}')
+                self.server_logger.info(
+                    f'Получили данные от клиента с адресом {addr}')
                 self.clients.append(client_socket)
                 # print(self.clients)
 
@@ -99,15 +111,18 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 error_list = []
 
                 if self.clients:
-                    recv_data_lst, send_data_lst, error_list = select(self.clients, self.clients, [], 0)
+                    recv_data_lst, send_data_lst, error_list = select(
+                        self.clients, self.clients, [], 0)
 
                 if recv_data_lst:
-                    self.server_logger.info(f'recv_data_lst = {len(recv_data_lst)}')
+                    self.server_logger.info(
+                        f'recv_data_lst = {len(recv_data_lst)}')
                     for client in recv_data_lst:
                         try:
                             self.proceed_response(client=client, addr=addr)
                         except Exception:
-                            self.server_logger.debug(f'Пользователь {client.getpeername()} отключился')
+                            self.server_logger.debug(
+                                f'Пользователь {client.getpeername()} отключился')
                             self.clients.remove(client)
 
                 for message in self.messages:
@@ -115,19 +130,24 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                     to = message.get("to")
                     sender = message.get("from")
                     msg = message.get("msg")
-                    info = message.get("info") if message.get("info") is not None else "OK"
-                    action = message.get("action") if message.get("action") is not None else JIM.MESSAGE
+                    info = message.get("info") if message.get(
+                        "info") is not None else "OK"
+                    action = message.get("action") if message.get(
+                        "action") is not None else JIM.MESSAGE
                     print(self.client_names)
                     client_to = self.client_names.get(to)
                     client_from = self.client_names.get(sender)
                     if client_to is not None:
                         # check for presence
-                        response = JIM().get_request(action=action, message=msg, send_to=to, send_from=sender,
-                                                     user=to, info=info)
+                        response = JIM().get_request( action=action, message=msg,
+                                       send_to=to, send_from=sender, user=to, info=info)
                         self.send_response(client_to, response)
                     else:
                         print("error")
-                        response = JIM().get_request(action=JIM.ALERT, message="Пользователь не зарегистрирован или оффлайн", info=info)
+                        response = JIM().get_request(
+                            action=JIM.ALERT,
+                            message="Пользователь не зарегистрирован или оффлайн",
+                            info=info)
                         self.send_response(client_from, response)
 
                 self.messages.clear()
@@ -157,12 +177,14 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def proceed_response(self, client, addr):
-        self.server_logger.info(f'Получили данные от клиента {client.getpeername()}')
+        self.server_logger.info(
+            f'Получили данные от клиента {client.getpeername()}')
         client_request = self.get_request(client=client)
         protocol = self.get_protocol_from_client_request(client_request)
 
         self.server_logger.info('Обработка клиентского запроса')
-        response = self.proceed_event(protocol=protocol, addr=addr, client=client)
+        response = self.proceed_event(
+            protocol=protocol, addr=addr, client=client)
         self.send_response(client, response)
 
     @log_exception(Exception)
@@ -181,7 +203,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
         if protocol.message_type:
             print("procced message")
             print(msg)
-            self.messages.append({"msg": msg, "from": send_from, "to": send_to})
+            self.messages.append(
+                {"msg": msg, "from": send_from, "to": send_to})
             if self.client_names.get(send_to) is None:
                 protocol.set_response_code(404)
             else:
@@ -197,7 +220,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                     self.client_names[username] = client
                     db_info = []
                     db_user = self.db.get_user(login=username)
-                    active_user = self.db.ActiveUsers(user_id=db_user.id, port=addr[1], address=addr[0])
+                    active_user = self.db.ActiveUsers(
+                        user_id=db_user.id, port=addr[1], address=addr[0])
                     self.db.update_user_history(username, addr[0], addr[1])
                     # history = self.db.UsersHistory(user_id=db_user.id, port=addr[1], address=addr[0])
                     db_info.append(active_user)
@@ -211,11 +235,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 else:
                     self.clients.remove(client)
                     protocol.set_response_action(action=JIM.ALERT)
-                    protocol.set_message(message="Неправильное имя пользователя или пароль")
+                    protocol.set_message(
+                        message="Неправильное имя пользователя или пароль")
 
             else:
                 self.clients.remove(client)
-                self.server_logger.error(f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
+                self.server_logger.error(
+                    f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
                 protocol.set_response_action(action=JIM.ALERT)
                 protocol.set_message(message="Ошибка кодирования")
 
@@ -227,7 +253,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 self.client_names.pop(username)
                 self.db.delete_active_user(username)
             else:
-                self.server_logger.error(f'Ошибка {401} : {protocol.SERVER_CODES.get(401)}')
+                self.server_logger.error(
+                    f'Ошибка {401} : {protocol.SERVER_CODES.get(401)}')
                 # Server.CHAT_MSG.append(' ')
                 protocol.set_response_code(401)
 
@@ -238,10 +265,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 user_public_key = protocol.get_public_key()
                 self.db.save_user_pk(username, user_public_key)
                 protocol.set_response_action(action=JIM.PRESENCE)
-                protocol.set_public_key(public_key=get_server_public_key(to_str=True))
+                protocol.set_public_key(
+                    public_key=get_server_public_key(
+                        to_str=True))
                 protocol.set_message(message='test ping')
             else:
-                self.server_logger.error(f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
+                self.server_logger.error(
+                    f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
                 protocol.set_response_code(402)
 
         if protocol.get_contacts_type:
@@ -267,7 +297,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                     protocol.set_response_code(404)
 
             else:
-                self.server_logger.error(f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
+                self.server_logger.error(
+                    f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
                 protocol.set_response_code(402)
 
         if protocol.del_type:
@@ -281,11 +312,16 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 else:
                     protocol.set_response_code(404)
             else:
-                self.server_logger.error(f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
+                self.server_logger.error(
+                    f'Ошибка {402} : {protocol.SERVER_CODES.get(402)}')
                 protocol.set_response_code(402)
 
         if protocol.alert_type:
-            self.messages.append({"msg": msg, "from": send_from, "to": send_to, "action": JIM.ALERT, "info": protocol.get_info()})
+            self.messages.append({"msg": msg,
+                                  "from": send_from,
+                                  "to": send_to,
+                                  "action": JIM.ALERT,
+                                  "info": protocol.get_info()})
             if self.client_names.get(send_to) is None:
                 protocol.set_response_code(404)
             else:

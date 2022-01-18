@@ -1,7 +1,8 @@
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QAction, QLineEdit, QLabel, QVBoxLayout, QPushButton, QTableView, QHBoxLayout, QFileDialog
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtCore import Qt, QTimer, Slot
-import sys, os
+import sys
+import os
 from messenger2.databases.database import ServerDatabase
 from messenger2.server.gui.config_window import ConfigWindow
 from messenger2.server.gui.history_window import HistoryWindow
@@ -71,7 +72,8 @@ class ServerWindow(QMainWindow):
     def _setUserModel(self, users):
 
         model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(["Имя", "IP адресс", "Порт", "Время входа"])
+        model.setHorizontalHeaderLabels(
+            ["Имя", "IP адресс", "Порт", "Время входа"])
 
         for user in users:
             login = QStandardItem(user[1].login)
@@ -106,7 +108,8 @@ class ServerWindow(QMainWindow):
         self.history_window.show()
 
     def register_user(self):
-        self.register_window = RegisterWindow(database=self.database, core=self.core)
+        self.register_window = RegisterWindow(
+            database=self.database, core=self.core)
         self.register_window.add_contact.connect(self.add_contact)
         self.register_window.show()
 
@@ -131,7 +134,11 @@ if __name__ == "__main__":
     history = db.UsersHistory(user_id=1, port=7777, address="localhost")
     history_2 = db.UsersHistory(user_id=1, port=7778, address="198.161.0.1")
     db.save([user, active_user, history, history_2])
-    window = ServerWindow(database=db, uic_file=os.path.join(os.getcwd(), "ui\\server.ui"))
+    window = ServerWindow(
+        database=db,
+        uic_file=os.path.join(
+            os.getcwd(),
+            "ui\\server.ui"))
     window.show()
     user = db.AllUsers(login="kaliter", password="1111")
     active_user = db.ActiveUsers(port=8888, address='127.0.0.1', user_id=2)

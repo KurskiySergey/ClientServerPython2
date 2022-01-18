@@ -119,7 +119,8 @@ class JIM(BaseProtocol):
         return self.request.get("info")
 
     def get_message_info(self):
-        return self.request.get('message'), self.request.get('send_to'), self.request.get('send_from')
+        return self.request.get('message'), self.request.get(
+            'send_to'), self.request.get('send_from')
 
     def get_user(self):
         user = self.request.get('user')
@@ -164,7 +165,8 @@ class JIM(BaseProtocol):
         for key in JIM.NEEDED_KEYS:
             if key == 'action':
                 action_code = request.get(key)
-                if action_code not in JIM.ACTION_CODES or len(action_code) > JIM.MAX_ACTION_LENGTH:
+                if action_code not in JIM.ACTION_CODES or len(
+                        action_code) > JIM.MAX_ACTION_LENGTH:
                     return False
             if key not in request.keys():
                 return False

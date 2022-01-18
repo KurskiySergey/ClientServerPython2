@@ -4,8 +4,8 @@ from messenger2.common.security.keys import get_server_private_key, get_private_
 
 
 def get_info(key, data):
-    enc_session_key, nonce, tag, enc_text = data[:key.size_in_bytes()], data[key.size_in_bytes():][:16], \
-                                            data[key.size_in_bytes():][16:][:16], data[key.size_in_bytes():][16:][16:]
+    enc_session_key, nonce, tag, enc_text = data[:key.size_in_bytes()], data[key.size_in_bytes(
+    ):][:16], data[key.size_in_bytes():][16:][:16], data[key.size_in_bytes():][16:][16:]
     rsa = PKCS1_v1_5.new(key=key)
     session_key = rsa.decrypt(enc_session_key, sentinel=None)
     print(session_key)

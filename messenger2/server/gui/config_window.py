@@ -15,16 +15,19 @@ class ConfigWindow(QDialog):
     def setUi(self):
         MainVBox = QVBoxLayout()
 
-        Vbox, self.input_database = self._create_set_line("Путь до базы данных", "Выбрать", self.open_file_dialog)
+        Vbox, self.input_database = self._create_set_line(
+            "Путь до базы данных", "Выбрать", self.open_file_dialog)
         MainVBox.addLayout(Vbox)
 
-        Vbox, self.input_database_name = self._create_set_line("Имя базы данных")
+        Vbox, self.input_database_name = self._create_set_line(
+            "Имя базы данных")
         MainVBox.addLayout(Vbox)
 
         Vbox, self.input_port = self._create_set_line("Номер порта сервера")
         MainVBox.addLayout(Vbox)
 
-        Vbox, self.input_address = self._create_set_line("Какие IP слушаем( по умолчанию все )")
+        Vbox, self.input_address = self._create_set_line(
+            "Какие IP слушаем( по умолчанию все )")
         MainVBox.addLayout(Vbox)
 
         Vbox = QVBoxLayout()
@@ -57,7 +60,11 @@ class ConfigWindow(QDialog):
         file_dialog = QFileDialog(parent=self)
         file_dialog.show()
 
-    def _create_set_line(self, text_information, button_name=None, button_action_fnc=None):
+    def _create_set_line(
+            self,
+            text_information,
+            button_name=None,
+            button_action_fnc=None):
         Vbox = QVBoxLayout()
         info_label = QLabel(text=text_information)
         info_label.setAlignment(Qt.AlignCenter)

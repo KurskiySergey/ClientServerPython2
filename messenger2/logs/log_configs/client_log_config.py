@@ -6,7 +6,9 @@ CLIENT_LOGGER = 'messenger.client'
 
 LOG = logging.getLogger(CLIENT_LOGGER)
 
-FILE_HANDLER = logging.FileHandler(f'{CLIENT_LOG_DIR}\\{FILE_LOG_NAME}', encoding='utf-8')
+FILE_HANDLER = logging.FileHandler(
+    f'{CLIENT_LOG_DIR}\\{FILE_LOG_NAME}',
+    encoding='utf-8')
 FILE_HANDLER.setLevel(logging.DEBUG)
 
 FORMATTER = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")

@@ -61,7 +61,9 @@ def login_required():
                         return func(*args, **kwargs)
                     else:
                         database = server.db
-                        active_users = [user[1].login for user in database.get_active_user_list(join_users=True)]
+                        active_users = [
+                            user[1].login for user in database.get_active_user_list(
+                                join_users=True)]
                         msg = "Попытка неавторизированного доступа"
                         if protocol.join_type:
                             LOGGER.info("Авторизация нового клиента")

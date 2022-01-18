@@ -30,7 +30,11 @@ def generate_pair(username, is_client=True):
 
 def get_public_key(username, to_str=False):
     try:
-        key = RSA.import_key(open(os.path.join(CLIENT_KEYS_DIR, f"public_{username}.pem")).read())
+        key = RSA.import_key(
+            open(
+                os.path.join(
+                    CLIENT_KEYS_DIR,
+                    f"public_{username}.pem")).read())
         if to_str:
             key = str(key.public_key().export_key(), encoding=JIM.ENCODING)
         return key
@@ -40,7 +44,11 @@ def get_public_key(username, to_str=False):
 
 def get_private_key(username, to_str=False):
     try:
-        key = RSA.import_key(open(os.path.join(CLIENT_KEYS_DIR, f"private_{username}.pem")).read())
+        key = RSA.import_key(
+            open(
+                os.path.join(
+                    CLIENT_KEYS_DIR,
+                    f"private_{username}.pem")).read())
         if to_str:
             key = str(key.public_key().export_key(), encoding=JIM.ENCODING)
         return key

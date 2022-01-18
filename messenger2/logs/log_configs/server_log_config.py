@@ -7,7 +7,11 @@ SERVER_LOGGER = 'messenger.server'
 
 LOG = logging.getLogger(SERVER_LOGGER)
 
-FILE_HANDLER = TimedRotatingFileHandler(f'{SERVER_LOG_DIR}\\{FILE_LOG_NAME}', when='D', interval=1, encoding='utf-8')
+FILE_HANDLER = TimedRotatingFileHandler(
+    f'{SERVER_LOG_DIR}\\{FILE_LOG_NAME}',
+    when='D',
+    interval=1,
+    encoding='utf-8')
 FILE_HANDLER.setLevel(logging.DEBUG)
 
 FORMATTER = logging.Formatter("%(asctime)s - %(levelname)s : %(message)s")

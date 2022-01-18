@@ -23,8 +23,9 @@ class Port:
                 instance.__dict__[LOGGER].error('Неверно заданный порт')
                 raise ValueError
         except ValueError:
-            instance.__dict__[LOGGER].error('В качастве порта может быть указано только число '
-                                            'в диапазоне от 1024 до 65535.')
+            instance.__dict__[LOGGER].error(
+                'В качастве порта может быть указано только число '
+                'в диапазоне от 1024 до 65535.')
             instance.__dict__[LOGGER].error('Задан порт по умолчанию')
 
             instance.__dict__[self.my_attr] = config.SERVER_PORT

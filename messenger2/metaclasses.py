@@ -1,4 +1,5 @@
-import dis, types
+import dis
+import types
 from messenger2.decorators import log_exception
 
 
@@ -33,12 +34,16 @@ class BaseVerifier(type):
 
         # print(necessary_params_count)
         if necessary_params_count < len(necessary_params):
-            raise TypeError(f"Ошибка инициализации параметров {necessary_params}\n"
-                            f"Метод\\Атрибут(ы) отсутствуют")
+            raise TypeError(
+                f"Ошибка инициализации параметров {necessary_params}\n"
+                f"Метод\\Атрибут(ы) отсутствуют")
 
     @staticmethod
     @log_exception(Exception)
-    def check_instructions(content, prohibited_params: list = None, necessary_params: list = None):
+    def check_instructions(
+            content,
+            prohibited_params: list = None,
+            necessary_params: list = None):
         instr = dis.get_instructions(content)
 
         params = set()
@@ -53,8 +58,9 @@ class BaseVerifier(type):
         if prohibited_params is not None:
             for param in params:
                 if param in prohibited_params:
-                    raise TypeError(f"Ошибка инициализации параметра {param}\n"
-                                    f"Метод\\Атрибут запрещен для использования")
+                    raise TypeError(
+                        f"Ошибка инициализации параметра {param}\n"
+                        f"Метод\\Атрибут запрещен для использования")
 
         if necessary_params is not None:
             for param in necessary_params:

@@ -28,10 +28,12 @@ class OpenWindow(QDialog):
         self.ui = loader.load(ui)
         ui.close()
         if not self.is_new:
-            self.ui.info_label.setText(f"Получено сообщение от {self.contact}\nОткрыть диалог ?")
+            self.ui.info_label.setText(
+                f"Получено сообщение от {self.contact}\nОткрыть диалог ?")
         else:
-            self.ui.info_label.setText(f"Получено сообщение от нового пользователя {self.contact}\n"
-                                       f"Добавить его в контакты и открыть диалог ?")
+            self.ui.info_label.setText(
+                f"Получено сообщение от нового пользователя {self.contact}\n"
+                f"Добавить его в контакты и открыть диалог ?")
         self.ui.yes_btn.clicked.connect(self.yes)
         self.ui.no_btn.clicked.connect(self.no)
 
@@ -43,7 +45,10 @@ class OpenWindow(QDialog):
 
     def no(self):
         if self.is_new:
-            self.send_alert.emit("Пользователь отказался добавить вас в контакты", self.contact, self.transport.username)
+            self.send_alert.emit(
+                "Пользователь отказался добавить вас в контакты",
+                self.contact,
+                self.transport.username)
         self.close()
 
     def close(self) -> bool:

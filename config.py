@@ -4,7 +4,8 @@ from PySide2.QtCore import QCoreApplication
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-QT_PLUGINS_PATH = os.path.join(BASE_DIR, "venv\\Lib\\site-packages\\PySide2\\plugins")
+QT_PLUGINS_PATH = os.path.join(
+    BASE_DIR, "venv\\Lib\\site-packages\\PySide2\\plugins")
 QCoreApplication.setLibraryPaths([QT_PLUGINS_PATH])
 
 config = configparser.ConfigParser()

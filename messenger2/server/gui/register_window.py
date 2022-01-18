@@ -34,12 +34,16 @@ class RegisterWindow(QDialog):
         password = self.ui.pwd_edit.text()
         repeat_password = self.ui.repeat_pwd_edit.text()
         if len(username) != 0:
-            if password == repeat_password and len(password) != 0 and len(repeat_password) != 0:
+            if password == repeat_password and len(
+                    password) != 0 and len(repeat_password) != 0:
                 if self.database.check_user(login=username):
-                    self.alert = AlertWindow(info_msg="Такой пользователь уже существует")
+                    self.alert = AlertWindow(
+                        info_msg="Такой пользователь уже существует")
                 else:
-                    password = get_hash_from_password(password=password, salt=username)
-                    self.add_contact.emit({"user": username, "password": password})
+                    password = get_hash_from_password(
+                        password=password, salt=username)
+                    self.add_contact.emit(
+                        {"user": username, "password": password})
                     self.alert = AlertWindow(info_msg="Пользователь добавлен")
                 self.alert.show()
                 self.close()

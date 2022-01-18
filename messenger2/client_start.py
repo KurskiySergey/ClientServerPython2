@@ -11,9 +11,24 @@ import sys
 def get_parameters(address=None, port=None, username=None, password=None):
 
     parser = argparse.ArgumentParser(description="client parser")
-    parser.add_argument("-p", "--port", type=int, default=config.USER_PORT, help="port name")
-    parser.add_argument("-a", "--address", type=str, default=config.USER_ADDRESS, help="address name")
-    parser.add_argument("-u", "--username", type=str, default=f"Guest_{randint(0, 15)}", help="username")
+    parser.add_argument(
+        "-p",
+        "--port",
+        type=int,
+        default=config.USER_PORT,
+        help="port name")
+    parser.add_argument(
+        "-a",
+        "--address",
+        type=str,
+        default=config.USER_ADDRESS,
+        help="address name")
+    parser.add_argument(
+        "-u",
+        "--username",
+        type=str,
+        default=f"Guest_{randint(0, 15)}",
+        help="username")
     parser.add_argument("-k", "--key", type=str, help="password")
     args = parser.parse_args()
 
@@ -43,7 +58,11 @@ def get_parameters(address=None, port=None, username=None, password=None):
 def start(ip=None, port=None, username=None, password=None):
     ip, port, username, password = get_parameters(ip, port, username, password)
     app = QApplication()
-    window = WelcomeWindow(ip_address=ip, port=port, username=username, password=password)
+    window = WelcomeWindow(
+        ip_address=ip,
+        port=port,
+        username=username,
+        password=password)
     window.show()
     sys.exit(app.exec_())
 
