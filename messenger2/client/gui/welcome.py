@@ -11,6 +11,11 @@ from messenger2.common.security.hash_password import get_hash_from_password
 
 class WelcomeWindow(QDialog):
 
+    """
+    Welcome window. For entering on server
+    if such user is exists
+    """
+
     def __init__(self, ip_address, port, username=None, password=None):
         super(WelcomeWindow, self).__init__()
         self.database = None
@@ -24,6 +29,7 @@ class WelcomeWindow(QDialog):
         self.setUI(os.path.join(config.CLIENT_UI_DIR, "welcome.ui"))
 
     def setUI(self, ui_file):
+        """function that set up ui files"""
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -34,6 +40,7 @@ class WelcomeWindow(QDialog):
         self.ui.enter_btn.clicked.connect(self.register_user)
 
     def register_user(self):
+        """function that check input login and password for auth"""
         username = self.ui.user_edit.text()
         password = get_hash_from_password(
             password=self.ui.pwd_edit.text(), salt=username)
@@ -66,13 +73,16 @@ class WelcomeWindow(QDialog):
 
     @Slot(str)
     def show_alert(self, msg):
+        """function that shows alert messages"""
         self.alert = AlertWindow(info_msg=msg)
         self.alert.show()
 
     def close(self) -> bool:
+        """close window"""
         return self.ui.close()
 
     def show(self) -> None:
+        """show gui"""
         if self.username is not None and self.password is not None:
             self.ui.show()
             self.ui.user_edit.setText(self.username)

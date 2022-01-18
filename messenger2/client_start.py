@@ -9,6 +9,15 @@ import sys
 
 
 def get_parameters(address=None, port=None, username=None, password=None):
+    """
+    get parameters from command line
+    if there are not in line then from config file
+    :param address: ip address
+    :param port: port
+    :param username: login
+    :param password: password
+    :return: parameters
+    """
 
     parser = argparse.ArgumentParser(description="client parser")
     parser.add_argument(
@@ -56,6 +65,14 @@ def get_parameters(address=None, port=None, username=None, password=None):
 
 
 def start(ip=None, port=None, username=None, password=None):
+    """
+    open welcome window with parameters
+    :param ip: ip address
+    :param port: port
+    :param username: login
+    :param password: password
+    :return: None
+    """
     ip, port, username, password = get_parameters(ip, port, username, password)
     app = QApplication()
     window = WelcomeWindow(

@@ -11,7 +11,10 @@ else:
 
 
 def login_required():
-
+    """
+    decorator that check if user is register in system
+    :return: func(*args, **kwargs) or alert request
+    """
     def deco(func):
         def wrap(*args, **kwargs):
             if WAY == "server_start.py":
@@ -92,7 +95,11 @@ def login_required():
 
 
 def log_exception(exception):
-
+    """
+    decorator that log raised exceptions
+    :param exception: Exception
+    :return: func(*args, **kwargs)
+    """
     def deco(func):
         def wrap(*args, **kwargs):
 

@@ -10,7 +10,9 @@ else:
 
 
 class Port:
-
+    """
+    Descriptor for port checking
+    """
     def __get__(self, instance, owner):
         return instance.__dict__[self.my_attr]
 
@@ -46,6 +48,10 @@ class Port:
 
 
 class Address:
+    """
+    Descriptor for ip check
+    """
+
     def __get__(self, instance, owner):
         return instance.__dict__[self.my_attr]
 

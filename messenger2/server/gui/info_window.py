@@ -3,6 +3,9 @@ from PySide2.QtCore import Qt
 
 
 class InfoWindow(QDialog):
+    """
+    Info window
+    """
     def __init__(self, info_msg):
         super(InfoWindow, self).__init__()
         self.setWindowTitle("alert")

@@ -2,6 +2,10 @@ import logging
 from config import SERVER_LOG_DIR
 from logging.handlers import TimedRotatingFileHandler
 
+"""
+Creates main server config data
+"""
+
 FILE_LOG_NAME = 'server.log'
 SERVER_LOGGER = 'messenger.server'
 

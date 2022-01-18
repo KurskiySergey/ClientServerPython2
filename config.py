@@ -25,7 +25,6 @@ USER_PORT = 7777
 MAX_POCKET_SIZE = 1024
 MAX_CONNECTIONS = 5
 
-
 LOG_DIR = os.path.join(BASE_DIR, 'messenger2\\logs')
 DATABASE_DIR = os.path.join(BASE_DIR, "messenger2\\databases")
 CLIENT_DIR = os.path.join(BASE_DIR, "messenger2\\client")

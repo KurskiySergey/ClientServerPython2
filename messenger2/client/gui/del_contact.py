@@ -6,6 +6,9 @@ import os
 
 
 class DeleteWindow(QDialog):
+    """
+    Window for deleting user contacts
+    """
 
     delete_contact = Signal(str)
     send_alert = Signal(str, str, str)
@@ -20,6 +23,7 @@ class DeleteWindow(QDialog):
         self.setUI(os.path.join(config.CLIENT_UI_DIR, "del_client.ui"))
 
     def setUI(self, ui_file):
+        """function that set up ui files"""
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -31,6 +35,7 @@ class DeleteWindow(QDialog):
         self.ui.no_btn.clicked.connect(self.no)
 
     def yes(self):
+        """function that emits when client clicked yes button"""
         self.delete_contact.emit(self.contact)
         self.send_alert.emit(
             f"Пользователь {self.contact} удалил вас из контактов",
@@ -39,10 +44,13 @@ class DeleteWindow(QDialog):
         self.close()
 
     def no(self):
+        """close window if user decided not to delete contact"""
         self.close()
 
     def close(self) -> bool:
+        """close window"""
         return self.ui.close()
 
     def show(self) -> None:
+        """show gui"""
         self.ui.show()

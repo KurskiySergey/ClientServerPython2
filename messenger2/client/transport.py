@@ -4,7 +4,7 @@ import socket
 from messenger2.protocols.JIM import JIM
 import config
 import time
-from messenger2.decorators import log_exception
+from messenger2.common.decorators import log_exception
 from messenger2.databases.database import ClientDatabase
 from messenger2.common.security.keys import get_public_key, get_client_server_public_key, save_server_public_key, generate_pair
 from messenger2.common.security.encript_data import encript_server_data
@@ -15,6 +15,11 @@ LOCK = threading.Lock()
 
 
 class ClientTransport(threading.Thread, QObject):
+
+    """
+    Main Transport between client and server.
+    Send all requests and proceed responses
+    """
 
     new_message = Signal(str)
     alert_message = Signal(str)
@@ -34,6 +39,10 @@ class ClientTransport(threading.Thread, QObject):
         self.is_active = False
 
     def connect_to_server(self):
+        """
+        try to make a connection with server
+        If auth is wrong close socket
+        """
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.settimeout(5)
         self.socket.connect((self.address, self.port))
@@ -45,6 +54,7 @@ class ClientTransport(threading.Thread, QObject):
             self.is_active = True
 
     def proceed_answer(self):
+        """function that proceed response from server"""
         response = self.get_answer()
         protocol = self.get_protocol_from_response(response)
         msg, send_to, send_from = protocol.get_message_info()
@@ -102,11 +112,13 @@ class ClientTransport(threading.Thread, QObject):
             return False
 
     def get_answer(self):
+        """read data from socket"""
         response = self.socket.recv(config.MAX_POCKET_SIZE)
         # print(response)
         return response
 
     def get_protocol_from_response(self, response):
+        """get protocol from server response"""
         try:
             protocol = JIM(request=response)
         except (UnicodeDecodeError, JSONDecodeError):
@@ -116,6 +128,7 @@ class ClientTransport(threading.Thread, QObject):
 
     @log_exception(Exception)
     def send_request(self, request):
+        """send request to server"""
         print("sending request")
         try:
             with LOCK:
@@ -129,6 +142,7 @@ class ClientTransport(threading.Thread, QObject):
             print("error")
 
     def join_to_server(self):
+        """try to join with server"""
         print("join")
         self.presence()
         request = JIM().get_request(
@@ -138,6 +152,11 @@ class ClientTransport(threading.Thread, QObject):
         return self.send_request(request)
 
     def presence(self):
+        """
+        make presence with server
+        get/send all necessary public keys
+        for encrypting data
+        """
         username_pk = get_public_key(username=self.username, to_str=True)
         if username_pk is None:
             generate_pair(username=self.username)
@@ -150,6 +169,7 @@ class ClientTransport(threading.Thread, QObject):
 
     @Slot(str, str, str)
     def send_alert(self, msg, send_to, send_from):
+        """send alert message to server"""
         print("send_alert")
         print(msg, send_to, send_from)
         request = JIM().get_request(
@@ -163,6 +183,7 @@ class ClientTransport(threading.Thread, QObject):
         self.send_request(request)
 
     def get_contacts(self):
+        """send request to get user contacts"""
         print("get_contacts")
         request = JIM().get_request(
             action=JIM.CONTACTS,
@@ -172,6 +193,7 @@ class ClientTransport(threading.Thread, QObject):
         self.send_request(request)
 
     def get_all_contacts(self):
+        """send request to get all users on server"""
         print("get_all_contacts")
         request = JIM().get_request(action=JIM.CONTACTS, user=self.username)
         request = encript_server_data(request)
@@ -179,6 +201,7 @@ class ClientTransport(threading.Thread, QObject):
         return contacts
 
     def add_contact(self, username):
+        """send request to add new contact to user list"""
         print("add_contact")
         request = JIM().get_request(
             action=JIM.ADD,
@@ -189,6 +212,7 @@ class ClientTransport(threading.Thread, QObject):
         self.send_request(request)
 
     def del_contact(self, username):
+        """send request to del contact from user list"""
         print("del_contacts")
         request = JIM().get_request(
             action=JIM.DELETE,
@@ -198,6 +222,7 @@ class ClientTransport(threading.Thread, QObject):
         self.send_request(request)
 
     def send_message(self, message, username, to):
+        """send message to another user"""
         print("send_message")
         request = JIM().get_request(
             action=JIM.MESSAGE,
@@ -211,12 +236,14 @@ class ClientTransport(threading.Thread, QObject):
             self.database.save_msg(msg=message, user=username, to=to)
 
     def quit(self):
+        """send request that client is closed or quit"""
         print("quit")
         request = JIM().get_request(action=JIM.QUIT, user=self.username)
         request = encript_server_data(request)
         self.send_request(request)
 
     def run(self) -> None:
+        """start main transport event"""
         print("start transport")
         while self.is_active:
             time.sleep(1)

@@ -8,6 +8,13 @@ from messenger2.server.core import Server
 
 
 def get_parameters(address=None, port=None):
+    """
+    get parameters from command line
+    if there are not in line then use default in config file
+    :param address: ip address
+    :param port: port
+    :return: parameters
+    """
     parser = argparse.ArgumentParser(description="server parser")
     parser.add_argument(
         "-p",
@@ -37,6 +44,12 @@ def get_parameters(address=None, port=None):
 
 
 def start(ip=None, port=None):
+    """
+    start server with ip and port
+    :param ip: ip address
+    :param port: port
+    :return: None
+    """
     ip, port = get_parameters(ip, port)
     app = QApplication()
     database = ServerDatabase(engine=config.DATABASE_ENGINE)

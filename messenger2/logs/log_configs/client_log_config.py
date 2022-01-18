@@ -1,6 +1,10 @@
 import logging
 from config import CLIENT_LOG_DIR
 
+"""
+Creates main client log config data
+"""
+
 FILE_LOG_NAME = 'client.log'
 CLIENT_LOGGER = 'messenger.client'
 

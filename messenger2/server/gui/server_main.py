@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QAction, QLineEdit, QLabel, QVBoxLayout, QPushButton, QTableView, QHBoxLayout, QFileDialog
+from PySide2.QtWidgets import QApplication, QMainWindow, QAction, QLabel, QTableView
 from PySide2.QtGui import QStandardItemModel, QStandardItem
 from PySide2.QtCore import Qt, QTimer, Slot
 import sys
@@ -7,18 +7,13 @@ from messenger2.databases.database import ServerDatabase
 from messenger2.server.gui.config_window import ConfigWindow
 from messenger2.server.gui.history_window import HistoryWindow
 from messenger2.server.gui.register_window import RegisterWindow
-from messenger2.server.gui.alert_window import AlertWindow
 import config
 
 
-def start_server_gui(database):
-    app = QApplication(sys.argv)
-    window = ServerWindow(database=database)
-    window.show()
-    app.exec_()
-
-
 class ServerWindow(QMainWindow):
+    """
+    Server main gui window
+    """
 
     def __init__(self, database, core, uic_file=None):
         super(ServerWindow, self).__init__()
@@ -33,6 +28,11 @@ class ServerWindow(QMainWindow):
         self.setUi(uic_file)
 
     def setUi(self, uic_file):
+        """
+        set up ui form
+        :param uic_file: Optional
+        :return: None
+        """
 
         actions = []
         self.exit = QAction("Выход", self)
@@ -70,6 +70,11 @@ class ServerWindow(QMainWindow):
         self.timer.start(20000)
 
     def _setUserModel(self, users):
+        """
+        Create main table model
+        :param users: user list
+        :return: None
+        """
 
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(
@@ -93,14 +98,27 @@ class ServerWindow(QMainWindow):
         self.table.setModel(model)
 
     def _create_menu_bar(self, action_list):
+        """
+        Set menu bar
+        :param action_list: list of actions
+        :return: None
+        """
         for action in action_list:
             self.menuBar().addAction(action)
 
     def update_list(self):
+        """
+        Update users list
+        :return: None
+        """
         users = self.database.get_active_user_list(join_users=True)
         self._setUserModel(users=users)
 
     def get_clients_history(self):
+        """
+        Get clients logging history form server database
+        :return: None
+        """
         history = self.database.get_history_list(join_users=True)
         print(history)
         self.history_window = HistoryWindow()
@@ -108,18 +126,31 @@ class ServerWindow(QMainWindow):
         self.history_window.show()
 
     def register_user(self):
+        """
+        open register window
+        :return: None
+        """
         self.register_window = RegisterWindow(
             database=self.database, core=self.core)
         self.register_window.add_contact.connect(self.add_contact)
         self.register_window.show()
 
     def open_config(self):
+        """
+        open config window
+        :return: None
+        """
         self.config_window = ConfigWindow()
         self.config_window.update_info()
         self.config_window.show()
 
     @Slot(dict)
     def add_contact(self, contact_dict):
+        """
+        Add new contact
+        :param contact_dict: dict with user and password
+        :return: None
+        """
         login = contact_dict.get("user")
         password = contact_dict.get("password")
         self.database.register_user(login=login, password=password)

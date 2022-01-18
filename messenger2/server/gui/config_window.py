@@ -5,6 +5,9 @@ import config
 
 
 class ConfigWindow(QDialog):
+    """
+    Config window for changing server configuration
+    """
     def __init__(self, parent=None):
         super(ConfigWindow, self).__init__(parent=parent)
         self.setWindowTitle("Server Config")
@@ -13,6 +16,10 @@ class ConfigWindow(QDialog):
         self.setUi()
 
     def setUi(self):
+        """
+        Set up ui
+        :return: None
+        """
         MainVBox = QVBoxLayout()
 
         Vbox, self.input_database = self._create_set_line(
@@ -45,6 +52,10 @@ class ConfigWindow(QDialog):
         self.setLayout(MainVBox)
 
     def save_settings(self):
+        """
+        saving current setting
+        :return: None
+        """
         settings = config.SETTINGS
         settings["server_port"] = self.input_port.text()
         settings["listen_address"] = self.input_address.text()
@@ -57,6 +68,10 @@ class ConfigWindow(QDialog):
         self.alert.show()
 
     def open_file_dialog(self):
+        """
+        Open file dialog
+        :return: None
+        """
         file_dialog = QFileDialog(parent=self)
         file_dialog.show()
 
@@ -65,6 +80,13 @@ class ConfigWindow(QDialog):
             text_information,
             button_name=None,
             button_action_fnc=None):
+        """
+        create basic set line
+        :param text_information: text information
+        :param button_name: name of active button
+        :param button_action_fnc: function to activate after click
+        :return: QVboxLayout object
+        """
         Vbox = QVBoxLayout()
         info_label = QLabel(text=text_information)
         info_label.setAlignment(Qt.AlignCenter)
@@ -83,6 +105,10 @@ class ConfigWindow(QDialog):
         return Vbox, input_line
 
     def update_info(self):
+        """
+        Update infor in window
+        :return: None
+        """
         self.input_database.setText(config.DATABASE_PATH)
         self.input_database_name.setText(config.DATABASE_NAME)
         self.input_address.setText(config.LISTEN_ADDRESS)

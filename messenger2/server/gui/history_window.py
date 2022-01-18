@@ -3,6 +3,9 @@ from PySide2.QtGui import QStandardItemModel, QStandardItem
 
 
 class HistoryWindow(QDialog):
+    """
+    Show clients logging history
+    """
     def __init__(self):
         super(HistoryWindow, self).__init__()
         self.resize(450, 300)
@@ -13,7 +16,11 @@ class HistoryWindow(QDialog):
         self.setLayout(Vbox)
 
     def update_history_list(self, history):
-
+        """
+        set history list
+        :param history: history array
+        :return: None
+        """
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(["Имя", "IP", "Port", "Время входа"])
 

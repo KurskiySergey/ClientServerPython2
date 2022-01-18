@@ -3,6 +3,10 @@ from PySide2.QtCore import Qt
 
 
 class AlertWindow(QDialog):
+    """
+    Window for showing some alert messages
+    """
+
     def __init__(self, info_msg):
         super(AlertWindow, self).__init__()
 

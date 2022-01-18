@@ -1,4 +1,7 @@
 class BaseProtocol:
+    """
+    Base protocol class
+    """
     ENCODING = 'utf-8'
     SERVER_CODES = {
         100: 'базовое уведомление',

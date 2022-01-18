@@ -6,9 +6,15 @@ from config import TEST_DATABASE_ENGINE, USER_PORT, USER_ADDRESS
 
 
 class ServerDatabase:
+    """
+    Creates server database
+    """
     Base = declarative_base()
 
     class AllUsers(Base):
+        """
+        all_users table
+        """
         __tablename__ = "all_users"
         id = Column(Integer, primary_key=True)
         login = Column(String, default="", unique=True)
@@ -26,6 +32,9 @@ class ServerDatabase:
             return f"<AllUsers({self.login}, {self.password}, {self.public_key})>"
 
     class UserContacts(Base):
+        """
+        contacts table
+        """
         __tablename__ = "contacts"
         id = Column(Integer, primary_key=True)
         user = Column(Integer, ForeignKey("all_users.id"))
@@ -39,6 +48,9 @@ class ServerDatabase:
             return f"<UserContacts({self.user}, {self.contact})>"
 
     class ActiveUsers(Base):
+        """
+        active_users table
+        """
         __tablename__ = "active_users"
         id = Column(Integer, primary_key=True)
         user_id = Column(Integer, ForeignKey('all_users.id'))
@@ -56,6 +68,7 @@ class ServerDatabase:
             return f"<ActiveUsers({self.user_id}, {self.port}, {self.ip_address}, {self.log_time})>"
 
     class UsersHistory(Base):
+        """users_history table"""
         __tablename__ = "users_history"
         id = Column(Integer, primary_key=True)
         user_id = Column(Integer, ForeignKey('all_users.id'))
@@ -81,9 +94,18 @@ class ServerDatabase:
 
     @property
     def session(self):
+        """
+        creates new session
+        :return: session
+        """
         return self._session()
 
     def save(self, info: list):
+        """
+        save list of data
+        :param info: array of Server database objects
+        :return: None
+        """
         session = self.session
         for data in info:
             session.add(data)
@@ -92,6 +114,13 @@ class ServerDatabase:
         session.close()
 
     def update_user_history(self, username, ip_address, port):
+        """
+        update history
+        :param username: login
+        :param ip_address: current ip
+        :param port: current port
+        :return: None
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=username)
         if user.count() != 0:
@@ -109,12 +138,23 @@ class ServerDatabase:
         session.close()
 
     def get_user(self, login):
+        """
+        Get user from database
+        :param login: login
+        :return: None
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=login).first()
         session.close()
         return user
 
     def save_user_pk(self, username, public_key):
+        """
+        save user pk in database
+        :param username: login
+        :param public_key: string public key
+        :return: None
+        """
         session = self.session
         session.query(self.AllUsers).filter_by(login=username).update(
             {self.AllUsers.public_key: public_key})
@@ -122,6 +162,11 @@ class ServerDatabase:
         session.close()
 
     def get_user_pk(self, username):
+        """
+        get user public key from database
+        :param username: login
+        :return: None
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=username).first()
         public_key = user.public_key
@@ -129,6 +174,12 @@ class ServerDatabase:
         return public_key
 
     def register_user(self, login, password):
+        """
+        Register new user in database
+        :param login: login
+        :param password: hash password
+        :return: None
+        """
         session = self.session
         user = self.AllUsers(login=login, password=password)
         session.add(user)
@@ -139,6 +190,11 @@ class ServerDatabase:
         session.close()
 
     def delete_active_user(self, login):
+        """
+        Delete user from active user list
+        :param login: login
+        :return: None
+        """
         session = self.session
         user_id = session.query(
             self.AllUsers).filter_by(
@@ -148,33 +204,53 @@ class ServerDatabase:
         session.close()
 
     def clear_active_users(self):
+        """
+        Clear current active list
+        :return: None
+        """
         session = self.session
         session.query(self.ActiveUsers).delete()
         session.commit()
         session.close()
 
     def delete(self, query):
+        """
+        delete query
+        :param query: database query
+        :return:
+        """
         session = self.session
         query.delete()
         session.commit()
         session.close()
 
-    def update(self):
-        pass
-
     def get_user_list(self):
+        """
+        get all users from database
+        :return: users
+        """
         session = self.session
         users = session.query(self.AllUsers).all()
         session.close()
         return users
 
     def get_contacts(self, username):
+        """
+        get all contacts from database
+        :param username: login (not necessary)
+        :return: array of users
+        """
         session = self.session
         contacts = session.query(self.AllUsers.login).all()
         session.close()
         return [contact[0] for contact in contacts]
 
     def get_user_contacts(self, username):
+        """
+        Get user contacts from database
+        :param username: login
+        :return: user contacts
+        """
         session = self.session
         user = session.query(
             self.AllUsers.id).filter_by(
@@ -190,6 +266,11 @@ class ServerDatabase:
         return [user[1].login for user in user_contacts]
 
     def get_history_list(self, join_users=False):
+        """
+        get history list
+        :param join_users: bool to join with all_users or not
+        :return: history array
+        """
         session = self.session
         if join_users:
             history = session.query(self.UsersHistory, self.AllUsers.login).join(
@@ -200,6 +281,11 @@ class ServerDatabase:
         return history
 
     def get_active_user_list(self, join_users=False):
+        """
+        get active user list from database
+        :param join_users: bool to join with all_users or not
+        :return: active_users array
+        """
         session = self.session
         if join_users:
             active_users = session.query(self.ActiveUsers, self.AllUsers).join(
@@ -210,6 +296,11 @@ class ServerDatabase:
         return active_users
 
     def check_active_user(self, username):
+        """
+        check if user is in current active users list
+        :param username: login
+        :return: True or False
+        """
         user = self.get_user(username)
         session = self.session
         active_user = session.query(
@@ -221,6 +312,10 @@ class ServerDatabase:
         return False
 
     def clear_db(self):
+        """
+        Clear all database
+        :return: None
+        """
         session = self.session
         session.query(self.AllUsers).delete()
         session.query(self.UsersHistory).delete()
@@ -230,6 +325,12 @@ class ServerDatabase:
         session.close()
 
     def add_contact(self, username, login):
+        """
+        Add contact to username contact list
+        :param username: user login
+        :param login: contact login
+        :return: True or False
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=username)
         contact = session.query(self.AllUsers).filter_by(login=login)
@@ -249,6 +350,12 @@ class ServerDatabase:
         return False
 
     def del_contact(self, username, login):
+        """
+        Delete contact from user list
+        :param username: user login
+        :param login: contact login
+        :return: True or False
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=username)
         contact = session.query(self.AllUsers).filter_by(login=login)
@@ -269,12 +376,23 @@ class ServerDatabase:
         return False
 
     def check_user(self, login):
+        """
+        Check if user is register in database
+        :param login: login
+        :return: True or False
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=login)
         session.close()
         return True if user.count() != 0 else False
 
     def check_user_password(self, login, password):
+        """
+        Check user password
+        :param login: login
+        :param password: user password to check
+        :return: True or False
+        """
         session = self.session
         user = session.query(self.AllUsers).filter_by(login=login).first()
         session.close()
@@ -284,6 +402,12 @@ class ServerDatabase:
             return False
 
     def add_user(self, login, password):
+        """
+        Add new user to database
+        :param login: login
+        :param password: user password
+        :return:
+        """
         session = self.session
         user = self.AllUsers(login=login, password=password)
         session.add(user)
@@ -292,10 +416,15 @@ class ServerDatabase:
 
 
 class ClientDatabase:
-
+    """
+    Create client database
+    """
     Base = declarative_base()
 
     class Contacts(Base):
+        """
+        contacts table
+        """
         __tablename__ = "contacts"
         id = Column(Integer, primary_key=True)
         login = Column(String)
@@ -307,6 +436,9 @@ class ClientDatabase:
             return f"<Contacts({self.login})"
 
     class HistoryMessage(Base):
+        """
+        history message table
+        """
         __tablename__ = "history"
         id = Column(Integer, primary_key=True)
         user = Column(String)
@@ -325,6 +457,10 @@ class ClientDatabase:
 
     @property
     def session(self):
+        """
+        Creates new session
+        :return: session
+        """
         return self._session()
 
     def __init__(self, engine):
@@ -335,6 +471,13 @@ class ClientDatabase:
         self._session = sessionmaker(bind=self._engine)
 
     def save_msg(self, user, to, msg):
+        """
+        save contacts message
+        :param user: sender
+        :param to: receiver
+        :param msg: message
+        :return: None
+        """
         log = self.HistoryMessage(msg=msg, user=user, to=to)
         session = self.session
         session.add(log)
@@ -342,6 +485,11 @@ class ClientDatabase:
         session.close()
 
     def check_contact(self, login):
+        """
+        check if contact is in user contact list
+        :param login: contact login
+        :return: True or False
+        """
         session = self.session
         client = session.query(self.Contacts).filter_by(login=login)
         session.close()
@@ -350,6 +498,11 @@ class ClientDatabase:
         return True
 
     def add_client(self, login):
+        """
+        Add new contact to user contact list
+        :param login: contact login
+        :return: None
+        """
         session = self.session
         client = self.Contacts(login=login)
         session.add(client)
@@ -357,6 +510,11 @@ class ClientDatabase:
         session.close()
 
     def del_client(self, login):
+        """
+        Delete contact from user contact list
+        :param login: contact login
+        :return: None
+        """
         session = self.session
         client = session.query(self.Contacts).filter_by(login=login)
         client.delete()
@@ -364,6 +522,11 @@ class ClientDatabase:
         session.close()
 
     def add_clients(self, logins: list):
+        """
+        Add multiple client to user contact list
+        :param logins: array of users login
+        :return: None
+        """
         session = self.session
         session.query(self.Contacts).delete()
         for login in logins:
@@ -373,12 +536,21 @@ class ClientDatabase:
         session.close()
 
     def get_contacts(self):
+        """
+        Get user contact list
+        :return: contacts
+        """
         session = self.session
         contacts = session.query(self.Contacts).all()
         session.close()
         return contacts
 
     def get_contact_history(self, login):
+        """
+        get current contact history
+        :param login: contact login
+        :return: contact history
+        """
         session = self.session
         history = session.query(
             self.HistoryMessage).filter(
@@ -390,16 +562,22 @@ class ClientDatabase:
         return history
 
     def delete_contact_history(self, login):
+        """
+        Delete current contact history
+        :param login: contact login
+        :return: None
+        """
         session = self.session
         session.query(self.HistoryMessage).filter(
             or_(self.HistoryMessage.user == login, self.HistoryMessage.to == login)).delete()
         session.commit()
         session.close()
 
-    def create_user(self, name, surname, login, password):
-        pass
-
     def clear_db(self):
+        """
+        Clear current database
+        :return: None
+        """
         session = self.session
         session.query(self.Contacts).delete()
         session.query(self.HistoryMessage).delete()

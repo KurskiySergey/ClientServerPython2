@@ -5,18 +5,21 @@ from messenger2.databases.database import ServerDatabase
 import logging
 from messenger2.protocols.JIM import JIM
 from messenger2.logs.log_configs import server_log_config
-from messenger2.decorators import log_exception, login_required
-import messenger2.descriptors as desc
-from messenger2.metaclasses import ServerVerifier
+from messenger2.common.decorators import log_exception, login_required
+import messenger2.common.descriptors as desc
+from messenger2.common.metaclasses import ServerVerifier
 import argparse
 import threading
 from messenger2.common.security.decript_data import decript_server_data
-from messenger2.common.security.encript_data import encript_server_data, encript_data
+from messenger2.common.security.encript_data import encript_data
 from messenger2.common.security.keys import generate_pair, get_server_public_key
 from json import JSONDecodeError
 
 
 class Server(threading.Thread, metaclass=ServerVerifier):
+    """
+    Core class of server event listener
+    """
     port = desc.Port()
     address = desc.Address()
 
@@ -44,6 +47,12 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def get_parameters(self, address=None, port=None):
+        """
+        get parameters from command line
+        :param address: ip address
+        :param port: port
+        :return: server parameters
+        """
 
         parser = argparse.ArgumentParser(description="server parser")
         parser.add_argument(
@@ -74,6 +83,10 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def get_socket(self):
+        """
+        create server socket
+        :return: socket
+        """
 
         server_socket = socket(AF_INET, SOCK_STREAM)
         server_socket.bind((self.address, self.port))
@@ -84,6 +97,10 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def start_server(self):
+        """
+        start event listener
+        :return: None
+        """
         self.server_logger.info('Запуск сервера')
         self.server = self.get_socket()
         self.server_logger.info('Запуск ожидания клиентов')
@@ -93,6 +110,10 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def event_listener(self):
+        """
+        accept clients, proceed responses and send messages
+        :return: None
+        """
         while True:
 
             try:
@@ -154,10 +175,20 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def get_request(self, client):
+        """
+        read data from client socket
+        :param client: client socket
+        :return: bytes
+        """
         return client.recv(config.MAX_POCKET_SIZE)
 
     @log_exception(Exception)
     def get_protocol_from_client_request(self, client_request):
+        """
+        generate protocol according to recv data
+        :param client_request: client bytes request
+        :return: JIM protocol
+        """
         print("get protocol")
         try:
             protocol = JIM(request=client_request)
@@ -168,6 +199,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def auth(self, username, password):
+        """
+        check if user is in server database
+        and if login/password are correct
+        :param username: login
+        :param password: password
+        :return: True, False or None
+        """
         if self.db.check_user(login=username):
             if self.db.check_user_password(login=username, password=password):
                 return True
@@ -177,6 +215,12 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
     @log_exception(Exception)
     def proceed_response(self, client, addr):
+        """
+        proceed answer to client
+        :param client: client socket
+        :param addr: client addr
+        :return:
+        """
         self.server_logger.info(
             f'Получили данные от клиента {client.getpeername()}')
         client_request = self.get_request(client=client)
@@ -195,6 +239,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
     @login_required()
     @log_exception(Exception)
     def proceed_event(self, protocol, addr, client):
+        """
+        generate response if client is auth in system
+        :param protocol: JIM protocol
+        :param addr: client address
+        :param client: client socket
+        :return: encoded json response
+        """
         print(protocol)
         username = protocol.get_user()
         protocol.set_user(username)
@@ -331,4 +382,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             else encript_data(self.db.get_user_pk(username), protocol.get_response())
 
     def run(self) -> None:
+        """
+        start main event
+        :return: None
+        """
         self.start_server()

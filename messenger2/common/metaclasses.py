@@ -1,10 +1,13 @@
 import dis
 import types
-from messenger2.decorators import log_exception
+from messenger2.common.decorators import log_exception
 
 
 class BaseVerifier(type):
-
+    """
+    Base metaclass.
+    Contains static methods.
+    """
     def __init__(cls, name, bases, attr):
         super(BaseVerifier, cls).__init__(name, bases, attr)
 
@@ -73,7 +76,7 @@ class BaseVerifier(type):
 
 
 class ServerVerifier(BaseVerifier):
-
+    """Server metaclass"""
     def __init__(cls, name, bases, attr):
         prohibited_params = ["connect"]
         necessary_params = ["AF_INET", "SOCK_STREAM"]
@@ -83,7 +86,7 @@ class ServerVerifier(BaseVerifier):
 
 
 class ClientVerifier(BaseVerifier):
-
+    """Client metaclass"""
     def __init__(cls, name, bases, attr):
         prohibited_params = ["socket", "accept", "listen"]
         necessary_params = ["send_request", "get_answer"]

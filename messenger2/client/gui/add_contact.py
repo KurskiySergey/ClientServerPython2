@@ -7,6 +7,9 @@ from messenger2.client.gui.alert_window import AlertWindow
 
 
 class AddWindow(QDialog):
+    """
+    Window for helping clients add new contacts
+    """
 
     add_contact = Signal(str)
 
@@ -19,6 +22,7 @@ class AddWindow(QDialog):
         self.update_list()
 
     def setUI(self, ui_file):
+        """function that set up ui files"""
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -30,6 +34,7 @@ class AddWindow(QDialog):
         self.ui.update_btn.clicked.connect(self.update_list)
 
     def update_list(self):
+        """function that update users list"""
         self.ui.selector.clear()
         users = self.transport.get_all_contacts()
         users.remove(self.transport.username)
@@ -43,12 +48,15 @@ class AddWindow(QDialog):
             self.ui.selector.addItems(available_contacts)
 
     def choose_contact(self):
+        """function that activates when client choose user to add"""
         contact = self.ui.selector.currentText()
         self.add_contact.emit(contact)
         self.update_list()
 
     def show(self) -> None:
+        """show gui"""
         self.ui.show()
 
     def close(self) -> bool:
+        """close window"""
         return self.ui.close()

@@ -7,6 +7,11 @@ import os
 
 class OpenWindow(QDialog):
 
+    """
+    Window that helps users to open new dialog
+    or open existing if some contact sent new message
+    """
+
     add_contact = Signal(str)
     select_history = Signal(str)
     send_alert = Signal(str, str, str)
@@ -22,6 +27,7 @@ class OpenWindow(QDialog):
         self.setUI(os.path.join(config.CLIENT_UI_DIR, "open_dialog.ui"))
 
     def setUI(self, ui_file):
+        """function that set up ui files"""
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -38,12 +44,14 @@ class OpenWindow(QDialog):
         self.ui.no_btn.clicked.connect(self.no)
 
     def yes(self):
+        """function that emits if user clicked yes button"""
         if self.is_new:
             self.add_contact.emit(self.contact)
         self.select_history.emit(self.contact)
         self.close()
 
     def no(self):
+        """function that emits if user clicked no button"""
         if self.is_new:
             self.send_alert.emit(
                 "Пользователь отказался добавить вас в контакты",
@@ -52,7 +60,9 @@ class OpenWindow(QDialog):
         self.close()
 
     def close(self) -> bool:
+        """close window"""
         return self.ui.close()
 
     def show(self) -> None:
+        """show gui"""
         self.ui.show()

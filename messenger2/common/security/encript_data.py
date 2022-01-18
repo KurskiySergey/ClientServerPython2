@@ -5,6 +5,12 @@ from messenger2.common.security.keys import get_server_public_key, get_public_ke
 
 
 def get_info(pk, data):
+    """
+    encrypt data with public key
+    :param pk: rsa public key
+    :param data: data to encrypt
+    :return: encrypted data
+    """
     session_key = get_random_bytes(16)
     rsa = PKCS1_v1_5.new(key=pk)
     enc_session_key = rsa.encrypt(session_key)
@@ -17,11 +23,22 @@ def get_info(pk, data):
 
 
 def encript_data(username_pk, data):
+    """
+    encrypt data on server side
+    :param username_pk: user rsa public key
+    :param data: data to encrypt
+    :return: encrypted data
+    """
     username_pk = RSA.import_key(username_pk)
     return get_info(username_pk, data)
 
 
 def encript_server_data(data):
+    """
+    encrypt data on client side
+    :param data: data to encrypt
+    :return: encrypted data
+    """
     server_pk = get_server_public_key()
     return get_info(server_pk, data)
 

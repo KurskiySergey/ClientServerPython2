@@ -8,7 +8,9 @@ from messenger2.common.security.hash_password import get_hash_from_password
 
 
 class RegisterWindow(QDialog):
-
+    """
+    Window for register new user
+    """
     add_contact = Signal(dict)
 
     def __init__(self, database, core):
@@ -20,6 +22,11 @@ class RegisterWindow(QDialog):
         self.setUI(os.path.join(config.SERVER_UI_DIR, "register_user.ui"))
 
     def setUI(self, ui_file):
+        """
+        Set up ui form ui file
+        :param ui_file: path to ui file
+        :return: None
+        """
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -30,6 +37,10 @@ class RegisterWindow(QDialog):
         self.ui.register_btn.clicked.connect(self.register_user)
 
     def register_user(self):
+        """
+        Register new uer in system
+        :return: None
+        """
         username = self.ui.user_edit.text()
         password = self.ui.pwd_edit.text()
         repeat_password = self.ui.repeat_pwd_edit.text()
@@ -55,7 +66,12 @@ class RegisterWindow(QDialog):
             self.alert.show()
 
     def close(self) -> bool:
+        """
+        Close window
+        :return: bool
+        """
         return self.ui.close()
 
     def show(self) -> None:
+        """show gui"""
         self.ui.show()

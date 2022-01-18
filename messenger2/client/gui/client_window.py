@@ -13,6 +13,11 @@ from messenger2.client.gui.open_dialog import OpenWindow
 
 
 class ClientWindow(QMainWindow):
+
+    """
+    Main client window
+    """
+
     def __init__(self, database, transport, ui_file, username="user"):
         super(ClientWindow, self).__init__()
         self.ui = None
@@ -33,6 +38,7 @@ class ClientWindow(QMainWindow):
         self.get_contact_list()
 
     def setUI(self, ui_file):
+        """function that set up ui files"""
         ui = QFile(ui_file)
         ui.open(QFile.ReadOnly)
         loader = QUiLoader()
@@ -59,6 +65,7 @@ class ClientWindow(QMainWindow):
         self.ui.installEventFilter(self)
 
     def open_add_window(self):
+        """function that opens add window"""
         self.add_window = AddWindow(
             database=self.database,
             transport=self.transport)
@@ -69,6 +76,7 @@ class ClientWindow(QMainWindow):
         pass
 
     def open_del_window(self):
+        """function that opens del window"""
         if self.active_contact is not None:
             self.del_window = DeleteWindow(
                 database=self.database,
@@ -83,6 +91,7 @@ class ClientWindow(QMainWindow):
         pass
 
     def open_dialog_window(self, new_contact):
+        """function that opens new dialog window"""
         if self.database.check_contact(new_contact):
             self.open_dialog = OpenWindow(
                 database=self.database,
@@ -101,6 +110,7 @@ class ClientWindow(QMainWindow):
         self.open_dialog.show()
 
     def send_msg(self):
+        """function that sends msg to another client"""
         print("send msg")
         if self.active_contact is not None:
             msg = self.ui.msg_window.toPlainText()
@@ -118,20 +128,24 @@ class ClientWindow(QMainWindow):
 
     @Slot(str)
     def alert_msg(self, msg):
+        """function that show alert messages"""
         print("alert signal")
         self.alert = AlertWindow(info_msg=msg)
         self.alert.show()
 
     def clear_msg(self):
+        """function that clear message that is going to be sent to another client"""
         print("clear_msg")
         self.ui.msg_window.setText("")
         pass
 
     def show(self) -> None:
+        """show gui"""
         self.ui.show()
 
     @Slot(str)
     def add_contact(self, contact):
+        """function that add new contact to user list"""
         try:
             self.transport.add_contact(contact)
         except Exception:
@@ -143,6 +157,7 @@ class ClientWindow(QMainWindow):
 
     @Slot(str)
     def del_contact(self, contact):
+        """function that delete contact from user list"""
         try:
             self.transport.del_contact(contact)
             self.show_contact_history(contact="")
@@ -154,6 +169,7 @@ class ClientWindow(QMainWindow):
             self.get_contact_list()
 
     def get_contact_list(self):
+        """function that gets contact list of current user"""
         contact_list = self.database.get_contacts()
         print(contact_list)
         model = QStandardItemModel()
@@ -167,6 +183,7 @@ class ClientWindow(QMainWindow):
 
     @Slot()
     def show_contact_history(self, contact=None):
+        """function that shows message history for every selected contact"""
         if contact is None:
             login = self.ui.contact_list.currentIndex().data()
             print(login)
@@ -195,16 +212,19 @@ class ClientWindow(QMainWindow):
         self.ui.history_list.setModel(model)
 
     def new_msg(self, send_from):
+        """function that shows new message from contact or new contact"""
         if self.active_contact == send_from:
             self.show_contact_history()
         else:
             self.open_dialog_window(new_contact=send_from)
 
     def closeEvent(self, event) -> None:
+        """close window from button"""
         self.transport.quit()
         QApplication.exit()
 
     def eventFilter(self, obj, event) -> bool:
+        """close window from gui"""
         if obj is self.ui:
             if event.type() == QEvent.Close:
                 self.transport.quit()
