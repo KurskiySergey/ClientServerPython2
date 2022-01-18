@@ -1,6 +1,5 @@
 import logging
 from messenger2.logs.log_configs import client_log_config, server_log_config
-from socket import socket
 import traceback
 import sys
 
@@ -18,6 +17,7 @@ def login_required():
             if WAY == "server_start.py":
                 from messenger2.server.core import Server
                 from messenger2.protocols.JIM import JIM
+                from socket import socket
                 print("check login required")
                 server = None
                 client = None
@@ -51,8 +51,9 @@ def login_required():
                     raise Exception
 
                 elif protocol is None:
-                    LOGGER.error("Клиентский запрос использует неправильный протокол")
-                    return 0
+                    msg = "Клиентский запрос использует неправильный протокол"
+                    LOGGER.error(msg)
+                    return JIM().get_request(action=JIM.ALERT, message=msg)
                 else:
 
                     if protocol.presence_type or protocol.alert_type:
@@ -61,6 +62,7 @@ def login_required():
                     else:
                         database = server.db
                         active_users = [user[1].login for user in database.get_active_user_list(join_users=True)]
+                        msg = "Попытка неавторизированного доступа"
                         if protocol.join_type:
                             LOGGER.info("Авторизация нового клиента")
                             return func(*args, **kwargs)
@@ -70,15 +72,14 @@ def login_required():
                                     if login in active_users:
                                         return func(*args, **kwargs)
                                     else:
-                                        LOGGER.info("Попытка неавторизированного доступа")
-                                        return 0
-
-                            LOGGER.info("Попытка неавторизированного доступа")
-                            return 0
+                                        LOGGER.info(msg)
+                                        return JIM().get_request(action=JIM.ALERT, message=msg)
+                            LOGGER.info(msg)
+                            return JIM().get_request(action=JIM.ALERT, message=msg)
 
                         else:
-                            LOGGER.info("Попытка неавторизированного доступа")
-                            return 0
+                            LOGGER.info(msg)
+                            return JIM().get_request(action=JIM.ALERT, message=msg)
 
             else:
                 LOGGER.critical("Несанкционированный запуск сервера")
