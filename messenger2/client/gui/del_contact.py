@@ -38,7 +38,7 @@ class DeleteWindow(QDialog):
         """function that emits when client clicked yes button"""
         self.delete_contact.emit(self.contact)
         self.send_alert.emit(
-            f"Пользователь {self.contact} удалил вас из контактов",
+            f"Пользователь {self.transport.username} удалил вас из контактов",
             self.contact,
             self.transport.username)
         self.close()
