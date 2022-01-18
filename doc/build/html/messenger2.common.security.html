@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>messenger2.common.security package &#8212; Messenger 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="messenger2.databases package" href="messenger2.databases.html" />
+    <link rel="prev" title="messenger2.common package" href="messenger2.common.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="messenger2-common-security-package">
+<h1>messenger2.common.security package<a class="headerlink" href="#messenger2-common-security-package" title="Permalink to this headline">¶</a></h1>
+<section id="security-package-for-encrypting-and-decrypting-data">
+<h2>security package for encrypting and decrypting data<a class="headerlink" href="#security-package-for-encrypting-and-decrypting-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-messenger2.common.security.decript_data">
+<span id="messenger2-common-security-decript-data-module"></span><h2>messenger2.common.security.decript_data module<a class="headerlink" href="#module-messenger2.common.security.decript_data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.decript_data.decript_data">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.decript_data.</span></span><span class="sig-name descname"><span class="pre">decript_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.decript_data.decript_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>decrypt data on client side
+:param username: user login
+:param data: encrypted data
+:return: decrypted data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.decript_data.decript_server_data">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.decript_data.</span></span><span class="sig-name descname"><span class="pre">decript_server_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.decript_data.decript_server_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>decrypt data on server side
+:param data: encrypted data
+:return: decrypted data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.decript_data.get_info">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.decript_data.</span></span><span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.decript_data.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>decrypt data with private key
+:param key: rsa key
+:param data: encrypted data
+:return: decrypted data</p>
+</dd></dl>
+
+</section>
+<section id="module-messenger2.common.security.encript_data">
+<span id="messenger2-common-security-encript-data-module"></span><h2>messenger2.common.security.encript_data module<a class="headerlink" href="#module-messenger2.common.security.encript_data" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.encript_data.encript_data">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.encript_data.</span></span><span class="sig-name descname"><span class="pre">encript_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username_pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.encript_data.encript_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>encrypt data on server side
+:param username_pk: user rsa public key
+:param data: data to encrypt
+:return: encrypted data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.encript_data.encript_server_data">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.encript_data.</span></span><span class="sig-name descname"><span class="pre">encript_server_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.encript_data.encript_server_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>encrypt data on client side
+:param data: data to encrypt
+:return: encrypted data</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.encript_data.get_info">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.encript_data.</span></span><span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.encript_data.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>encrypt data with public key
+:param pk: rsa public key
+:param data: data to encrypt
+:return: encrypted data</p>
+</dd></dl>
+
+</section>
+<section id="module-messenger2.common.security.hash_password">
+<span id="messenger2-common-security-hash-password-module"></span><h2>messenger2.common.security.hash_password module<a class="headerlink" href="#module-messenger2.common.security.hash_password" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.hash_password.get_hash_from_password">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.hash_password.</span></span><span class="sig-name descname"><span class="pre">get_hash_from_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.hash_password.get_hash_from_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>get hash from data
+:param password: user password
+:param salt: salt
+:return: string hash password</p>
+</dd></dl>
+
+</section>
+<section id="module-messenger2.common.security.keys">
+<span id="messenger2-common-security-keys-module"></span><h2>messenger2.common.security.keys module<a class="headerlink" href="#module-messenger2.common.security.keys" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.generate_pair">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">generate_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.generate_pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate rsa keys if they are not created
+:param username: login
+:param is_client: bool value if we check on server or client side
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.get_client_server_public_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">get_client_server_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.get_client_server_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get public server key from client side
+:param to_str: bool to get str instead of rsa object
+:return: rsa object, string or None if there is no key</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.get_private_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">get_private_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.get_private_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get private key from client side
+:param username: login
+:param to_str: bool to get str instead of rsa object
+:return: rsa object, string or None if there is no key</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.get_public_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">get_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.get_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get public key from client side
+:param username: login
+:param to_str: bool to get str instead of rsa object
+:return: rsa object, string or None if there is no key</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.get_server_private_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">get_server_private_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.get_server_private_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get private server key from server side
+:param to_str: bool to get str instead of rsa object
+:return: rsa object, string or None if there is no key</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.get_server_public_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">get_server_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.get_server_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>get public key from server
+:param to_str: bool to get str instead of rsa object
+:return: rsa object, string or None if there is no key</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="messenger2.common.security.keys.save_server_public_key">
+<span class="sig-prename descclassname"><span class="pre">messenger2.common.security.keys.</span></span><span class="sig-name descname"><span class="pre">save_server_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">server_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.common.security.keys.save_server_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>save public server key onn client side
+:param server_pk: public rsa server key string
+:return: None</p>
+</dd></dl>
+
+</section>
+<section id="module-messenger2.common.security">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-messenger2.common.security" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Messenger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ClientServerPython2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="messenger2.html">messenger2 package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ClientServerPython2.0</a><ul>
+  <li><a href="messenger2.html">messenger2 package</a><ul>
+  <li><a href="messenger2.common.html">messenger2.common package</a><ul>
+      <li>Previous: <a href="messenger2.common.html" title="previous chapter">messenger2.common package</a></li>
+      <li>Next: <a href="messenger2.databases.html" title="next chapter">messenger2.databases package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Sergey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/messenger2.common.security.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

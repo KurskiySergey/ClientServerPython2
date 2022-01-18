@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>messenger2.client.gui package &#8212; Messenger 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="messenger2.common package" href="messenger2.common.html" />
+    <link rel="prev" title="messenger2.client package" href="messenger2.client.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="messenger2-client-gui-package">
+<h1>messenger2.client.gui package<a class="headerlink" href="#messenger2-client-gui-package" title="Permalink to this headline">¶</a></h1>
+<section id="module-that-is-used-to-show-gui-for-client">
+<h2>Module that is used to show gui for client<a class="headerlink" href="#module-that-is-used-to-show-gui-for-client" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-messenger2.client.gui.add_contact">
+<span id="messenger2-client-gui-add-contact-module"></span><h2>messenger2.client.gui.add_contact module<a class="headerlink" href="#module-messenger2.client.gui.add_contact" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.add_contact.</span></span><span class="sig-name descname"><span class="pre">AddWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Window for helping clients add new contacts</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.choose_contact">
+<span class="sig-name descname"><span class="pre">choose_contact</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.choose_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that activates when client choose user to add</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that set up ui files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.add_contact.AddWindow.update_list">
+<span class="sig-name descname"><span class="pre">update_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.add_contact.AddWindow.update_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that update users list</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui.alert_window">
+<span id="messenger2-client-gui-alert-window-module"></span><h2>messenger2.client.gui.alert_window module<a class="headerlink" href="#module-messenger2.client.gui.alert_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.alert_window.AlertWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.alert_window.</span></span><span class="sig-name descname"><span class="pre">AlertWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.alert_window.AlertWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Window for showing some alert messages</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.alert_window.AlertWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.alert_window.AlertWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui.client_window">
+<span id="messenger2-client-gui-client-window-module"></span><h2>messenger2.client.gui.client_window module<a class="headerlink" href="#module-messenger2.client.gui.client_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.client_window.</span></span><span class="sig-name descname"><span class="pre">ClientWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'user'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QMainWindow</span></code></p>
+<p>Main client window</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that add new contact to user list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.alert_msg">
+<span class="sig-name descname"><span class="pre">alert_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.alert_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that show alert messages</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.clear_msg">
+<span class="sig-name descname"><span class="pre">clear_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.clear_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that clear message that is going to be sent to another client</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window from button</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.del_contact">
+<span class="sig-name descname"><span class="pre">del_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.del_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that delete contact from user list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.eventFilter">
+<span class="sig-name descname"><span class="pre">eventFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.eventFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window from gui</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.get_contact_list">
+<span class="sig-name descname"><span class="pre">get_contact_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.get_contact_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that gets contact list of current user</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.new_msg">
+<span class="sig-name descname"><span class="pre">new_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_from</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.new_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that shows new message from contact or new contact</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.open_add_window">
+<span class="sig-name descname"><span class="pre">open_add_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.open_add_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that opens add window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.open_del_window">
+<span class="sig-name descname"><span class="pre">open_del_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.open_del_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that opens del window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.open_dialog_window">
+<span class="sig-name descname"><span class="pre">open_dialog_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.open_dialog_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that opens new dialog window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.send_msg">
+<span class="sig-name descname"><span class="pre">send_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.send_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that sends msg to another client</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that set up ui files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.show_contact_history">
+<span class="sig-name descname"><span class="pre">show_contact_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.show_contact_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that shows message history for every selected contact</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.client_window.ClientWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.client_window.ClientWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui.del_contact">
+<span id="messenger2-client-gui-del-contact-module"></span><h2>messenger2.client.gui.del_contact module<a class="headerlink" href="#module-messenger2.client.gui.del_contact" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.del_contact.</span></span><span class="sig-name descname"><span class="pre">DeleteWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Window for deleting user contacts</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.delete_contact">
+<span class="sig-name descname"><span class="pre">delete_contact</span></span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.delete_contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.no">
+<span class="sig-name descname"><span class="pre">no</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.no" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window if user decided not to delete contact</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.send_alert">
+<span class="sig-name descname"><span class="pre">send_alert</span></span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.send_alert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that set up ui files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.del_contact.DeleteWindow.yes">
+<span class="sig-name descname"><span class="pre">yes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.del_contact.DeleteWindow.yes" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that emits when client clicked yes button</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui.open_dialog">
+<span id="messenger2-client-gui-open-dialog-module"></span><h2>messenger2.client.gui.open_dialog module<a class="headerlink" href="#module-messenger2.client.gui.open_dialog" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.open_dialog.</span></span><span class="sig-name descname"><span class="pre">OpenWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_new</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Window that helps users to open new dialog
+or open existing if some contact sent new message</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.no">
+<span class="sig-name descname"><span class="pre">no</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.no" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that emits if user clicked no button</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.select_history">
+<span class="sig-name descname"><span class="pre">select_history</span></span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.select_history" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.send_alert">
+<span class="sig-name descname"><span class="pre">send_alert</span></span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.send_alert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that set up ui files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.open_dialog.OpenWindow.yes">
+<span class="sig-name descname"><span class="pre">yes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.open_dialog.OpenWindow.yes" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that emits if user clicked yes button</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui.welcome">
+<span id="messenger2-client-gui-welcome-module"></span><h2>messenger2.client.gui.welcome module<a class="headerlink" href="#module-messenger2.client.gui.welcome" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.gui.welcome.</span></span><span class="sig-name descname"><span class="pre">WelcomeWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Welcome window. For entering on server
+if such user is exists</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>close window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.register_user">
+<span class="sig-name descname"><span class="pre">register_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.register_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that check input login and password for auth</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that set up ui files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.show_alert">
+<span class="sig-name descname"><span class="pre">show_alert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.show_alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that shows alert messages</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.gui.welcome.WelcomeWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.gui.welcome.WelcomeWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client.gui">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-messenger2.client.gui" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Messenger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ClientServerPython2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="messenger2.html">messenger2 package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ClientServerPython2.0</a><ul>
+  <li><a href="messenger2.html">messenger2 package</a><ul>
+  <li><a href="messenger2.client.html">messenger2.client package</a><ul>
+      <li>Previous: <a href="messenger2.client.html" title="previous chapter">messenger2.client package</a></li>
+      <li>Next: <a href="messenger2.common.html" title="next chapter">messenger2.common package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Sergey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/messenger2.client.gui.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

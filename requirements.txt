@@ -1,9 +1,17 @@
+bandit==1.7.1
 chardet==3.0.4
+colorama==0.4.4
+gitdb==4.0.9
+GitPython==3.1.26
 greenlet==1.1.2
 importlib-metadata==4.10.0
+pbr==5.8.0
+pycryptodome==3.12.0
 PySide2==5.15.2
 PyYAML==5.3.1
 shiboken2==5.15.2
+smmap==5.0.0
 SQLAlchemy==1.4.29
+stevedore==3.5.0
 typing-extensions==4.0.1
 zipp==3.7.0
