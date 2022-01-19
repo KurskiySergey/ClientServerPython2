@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>messenger2.client package &#8212; Messenger 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="messenger2.client.gui package" href="messenger2.client.gui.html" />
+    <link rel="prev" title="messenger2 package" href="messenger2.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="messenger2-client-package">
+<h1>messenger2.client package<a class="headerlink" href="#messenger2-client-package" title="Permalink to this headline">¶</a></h1>
+<section id="package-for-client-work-side">
+<h2>package for client work side<a class="headerlink" href="#package-for-client-work-side" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="messenger2.client.gui.html">messenger2.client.gui package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-that-is-used-to-show-gui-for-client">Module that is used to show gui for client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.add_contact">messenger2.client.gui.add_contact module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.alert_window">messenger2.client.gui.alert_window module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.client_window">messenger2.client.gui.client_window module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.del_contact">messenger2.client.gui.del_contact module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.open_dialog">messenger2.client.gui.open_dialog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui.welcome">messenger2.client.gui.welcome module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messenger2.client.gui.html#module-messenger2.client.gui">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-messenger2.client.transport">
+<span id="messenger2-client-transport-module"></span><h2>messenger2.client.transport module<a class="headerlink" href="#module-messenger2.client.transport" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.client.transport.</span></span><span class="sig-name descname"><span class="pre">ClientTransport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtCore.QObject</span></code></p>
+<p>Main Transport between client and server.
+Send all requests and proceed responses</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>send request to add new contact to user list</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.alert_message">
+<span class="sig-name descname"><span class="pre">alert_message</span></span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.alert_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.connect_to_server">
+<span class="sig-name descname"><span class="pre">connect_to_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.connect_to_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>try to make a connection with server
+If auth is wrong close socket</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.connection_lost">
+<span class="sig-name descname"><span class="pre">connection_lost</span></span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.connection_lost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.del_contact">
+<span class="sig-name descname"><span class="pre">del_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.del_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>send request to del contact from user list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.get_all_contacts">
+<span class="sig-name descname"><span class="pre">get_all_contacts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.get_all_contacts" title="Permalink to this definition">¶</a></dt>
+<dd><p>send request to get all users on server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.get_answer">
+<span class="sig-name descname"><span class="pre">get_answer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.get_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>read data from socket</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.get_contacts">
+<span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.get_contacts" title="Permalink to this definition">¶</a></dt>
+<dd><p>send request to get user contacts</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.get_protocol_from_response">
+<span class="sig-name descname"><span class="pre">get_protocol_from_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.get_protocol_from_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>get protocol from server response</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.join_to_server">
+<span class="sig-name descname"><span class="pre">join_to_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.join_to_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>try to join with server</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.new_message">
+<span class="sig-name descname"><span class="pre">new_message</span></span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.new_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.presence">
+<span class="sig-name descname"><span class="pre">presence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.presence" title="Permalink to this definition">¶</a></dt>
+<dd><p>make presence with server
+get/send all necessary public keys
+for encrypting data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.proceed_answer">
+<span class="sig-name descname"><span class="pre">proceed_answer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.proceed_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>function that proceed response from server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.quit">
+<span class="sig-name descname"><span class="pre">quit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>send request that client is closed or quit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>start main transport event</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.send_alert">
+<span class="sig-name descname"><span class="pre">send_alert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_from</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.send_alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>send alert message to server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.send_message">
+<span class="sig-name descname"><span class="pre">send_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.send_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>send message to another user</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.send_request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.client.transport.ClientTransport.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.client.transport.ClientTransport.update_contact_list">
+<span class="sig-name descname"><span class="pre">update_contact_list</span></span><a class="headerlink" href="#messenger2.client.transport.ClientTransport.update_contact_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.client">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-messenger2.client" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Messenger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ClientServerPython2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="messenger2.html">messenger2 package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ClientServerPython2.0</a><ul>
+  <li><a href="messenger2.html">messenger2 package</a><ul>
+      <li>Previous: <a href="messenger2.html" title="previous chapter">messenger2 package</a></li>
+      <li>Next: <a href="messenger2.client.gui.html" title="next chapter">messenger2.client.gui package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Sergey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/messenger2.client.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
