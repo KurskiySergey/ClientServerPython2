@@ -7,7 +7,7 @@ from messenger2.databases.database import ServerDatabase
 from messenger2.server.gui.config_window import ConfigWindow
 from messenger2.server.gui.history_window import HistoryWindow
 from messenger2.server.gui.register_window import RegisterWindow
-import config
+from messenger2 import config
 
 
 class ServerWindow(QMainWindow):

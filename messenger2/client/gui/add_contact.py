@@ -2,7 +2,7 @@ from PySide2.QtWidgets import QDialog
 from PySide2.QtCore import QFile, Signal
 from PySide2.QtUiTools import QUiLoader
 import os
-import config
+from messenger2 import config
 from messenger2.client.gui.alert_window import AlertWindow
 
 

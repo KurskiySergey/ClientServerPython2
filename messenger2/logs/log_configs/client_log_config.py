@@ -1,5 +1,5 @@
 import logging
-from config import CLIENT_LOG_DIR
+from messenger2.config import CLIENT_LOG_DIR
 
 """
 Creates main client log config data

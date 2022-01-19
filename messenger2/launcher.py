@@ -1,5 +1,5 @@
 import subprocess
-import config
+from messenger2 import config
 
 """
 Windows launcher for starting client server messenger on local device

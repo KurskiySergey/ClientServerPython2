@@ -1,5 +1,5 @@
 import logging
-from config import SERVER_LOG_DIR
+from messenger2.config import SERVER_LOG_DIR
 from logging.handlers import TimedRotatingFileHandler
 
 """

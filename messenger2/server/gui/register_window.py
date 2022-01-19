@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QDialog
 from PySide2.QtCore import QFile, Signal
 from PySide2.QtUiTools import QUiLoader
-import config
+from messenger2 import config
 import os
 from messenger2.server.gui.alert_window import AlertWindow
 from messenger2.common.security.hash_password import get_hash_from_password

@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, create_eng
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
-from config import TEST_DATABASE_ENGINE, USER_PORT, USER_ADDRESS
+from messenger2.config import TEST_DATABASE_ENGINE, USER_PORT, USER_ADDRESS
 
 
 class ServerDatabase:

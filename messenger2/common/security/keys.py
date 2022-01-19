@@ -1,7 +1,7 @@
 from Crypto.PublicKey import RSA
 import os
 from messenger2.protocols.JIM import JIM
-import config
+from messenger2 import config
 
 SERVER_KEYS_DIR = os.path.join(config.SERVER_DIR, "server_keys")
 CLIENT_KEYS_DIR = os.path.join(config.CLIENT_DIR, "client_keys")

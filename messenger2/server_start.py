@@ -1,4 +1,4 @@
-import config
+from messenger2 import config
 import argparse
 from PySide2.QtWidgets import QApplication
 import sys

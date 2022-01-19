@@ -3,7 +3,7 @@ import argparse
 from PySide2.QtWidgets import QApplication
 from messenger2.client.gui.welcome import WelcomeWindow
 
-import config
+from messenger2 import config
 from random import randint
 import sys
 

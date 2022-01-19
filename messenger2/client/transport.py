@@ -2,7 +2,7 @@ import threading
 from PySide2.QtCore import QObject, Signal, Slot
 import socket
 from messenger2.protocols.JIM import JIM
-import config
+from messenger2 import config
 import time
 from messenger2.common.decorators import log_exception
 from messenger2.databases.database import ClientDatabase

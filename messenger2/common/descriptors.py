@@ -1,4 +1,4 @@
-import config
+from messenger2 import config
 import traceback
 from ipaddress import ip_address
 

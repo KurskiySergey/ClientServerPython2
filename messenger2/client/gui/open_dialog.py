@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QDialog
 from PySide2.QtCore import QFile, Signal
 from PySide2.QtUiTools import QUiLoader
-import config
+from messenger2 import config
 import os
 
 

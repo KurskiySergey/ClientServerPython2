@@ -4,7 +4,7 @@ from PySide2.QtCore import Qt, QFile, Slot, QEvent
 from PySide2.QtUiTools import QUiLoader
 import sys
 from messenger2.databases.database import ClientDatabase
-import config
+from messenger2 import config
 from messenger2.client.transport import ClientTransport
 from messenger2.client.gui.add_contact import AddWindow
 from messenger2.client.gui.alert_window import AlertWindow

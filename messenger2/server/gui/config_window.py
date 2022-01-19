@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QDialog, QLineEdit, QLabel, QVBoxLayout, QPushButton, QHBoxLayout, QFileDialog
 from PySide2.QtCore import Qt
 from messenger2.server.gui.alert_window import AlertWindow
-import config
+from messenger2 import config
 
 
 class ConfigWindow(QDialog):

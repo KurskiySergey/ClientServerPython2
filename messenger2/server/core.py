@@ -1,6 +1,6 @@
 from select import select
 from socket import socket, AF_INET, SOCK_STREAM
-import config
+from messenger2 import config
 from messenger2.databases.database import ServerDatabase
 import logging
 from messenger2.protocols.JIM import JIM
