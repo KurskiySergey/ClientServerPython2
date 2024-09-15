@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>messenger2.server.gui package &#8212; Messenger 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="messenger2.server package" href="messenger2.server.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="messenger2-server-gui-package">
+<h1>messenger2.server.gui package<a class="headerlink" href="#messenger2-server-gui-package" title="Permalink to this headline">¶</a></h1>
+<section id="server-package-for-creating-gui-windows">
+<h2>server package for creating gui windows<a class="headerlink" href="#server-package-for-creating-gui-windows" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-messenger2.server.gui.alert_window">
+<span id="messenger2-server-gui-alert-window-module"></span><h2>messenger2.server.gui.alert_window module<a class="headerlink" href="#module-messenger2.server.gui.alert_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.alert_window.AlertWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.alert_window.</span></span><span class="sig-name descname"><span class="pre">AlertWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.alert_window.AlertWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Alert window for showing some messages</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.alert_window.AlertWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.alert_window.AlertWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui.config_window">
+<span id="messenger2-server-gui-config-window-module"></span><h2>messenger2.server.gui.config_window module<a class="headerlink" href="#module-messenger2.server.gui.config_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.config_window.</span></span><span class="sig-name descname"><span class="pre">ConfigWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Config window for changing server configuration</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow.open_file_dialog">
+<span class="sig-name descname"><span class="pre">open_file_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow.open_file_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open file dialog
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow.save_settings">
+<span class="sig-name descname"><span class="pre">save_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow.save_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>saving current setting
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow.setUi">
+<span class="sig-name descname"><span class="pre">setUi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow.setUi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up ui
+:return: None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.config_window.ConfigWindow.update_info">
+<span class="sig-name descname"><span class="pre">update_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.config_window.ConfigWindow.update_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update infor in window
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui.history_window">
+<span id="messenger2-server-gui-history-window-module"></span><h2>messenger2.server.gui.history_window module<a class="headerlink" href="#module-messenger2.server.gui.history_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.history_window.HistoryWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.history_window.</span></span><span class="sig-name descname"><span class="pre">HistoryWindow</span></span><a class="headerlink" href="#messenger2.server.gui.history_window.HistoryWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Show clients logging history</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.history_window.HistoryWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.history_window.HistoryWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.history_window.HistoryWindow.update_history_list">
+<span class="sig-name descname"><span class="pre">update_history_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.history_window.HistoryWindow.update_history_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>set history list
+:param history: history array
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui.info_window">
+<span id="messenger2-server-gui-info-window-module"></span><h2>messenger2.server.gui.info_window module<a class="headerlink" href="#module-messenger2.server.gui.info_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.info_window.InfoWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.info_window.</span></span><span class="sig-name descname"><span class="pre">InfoWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info_msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.info_window.InfoWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Info window</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.info_window.InfoWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.info_window.InfoWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui.register_window">
+<span id="messenger2-server-gui-register-window-module"></span><h2>messenger2.server.gui.register_window module<a class="headerlink" href="#module-messenger2.server.gui.register_window" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.register_window.</span></span><span class="sig-name descname"><span class="pre">RegisterWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QDialog</span></code></p>
+<p>Window for register new user</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close window
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.register_user">
+<span class="sig-name descname"><span class="pre">register_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.register_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register new uer in system
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.setUI">
+<span class="sig-name descname"><span class="pre">setUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.setUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up ui form ui file
+:param ui_file: path to ui file
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>show gui</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.register_window.RegisterWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.register_window.RegisterWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui.server_main">
+<span id="messenger2-server-gui-server-main-module"></span><h2>messenger2.server.gui.server_main module<a class="headerlink" href="#module-messenger2.server.gui.server_main" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger2.server.gui.server_main.</span></span><span class="sig-name descname"><span class="pre">ServerWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uic_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide2.QtWidgets.QMainWindow</span></code></p>
+<p>Server main gui window</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.add_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new contact
+:param contact_dict: dict with user and password
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.get_clients_history">
+<span class="sig-name descname"><span class="pre">get_clients_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.get_clients_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get clients logging history form server database
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.open_config">
+<span class="sig-name descname"><span class="pre">open_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.open_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>open config window
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.register_user">
+<span class="sig-name descname"><span class="pre">register_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.register_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>open register window
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.setUi">
+<span class="sig-name descname"><span class="pre">setUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uic_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.setUi" title="Permalink to this definition">¶</a></dt>
+<dd><p>set up ui form
+:param uic_file: Optional
+:return: None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;PySide2.QtCore.QMetaObject</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger2.server.gui.server_main.ServerWindow.update_list">
+<span class="sig-name descname"><span class="pre">update_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger2.server.gui.server_main.ServerWindow.update_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update users list
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger2.server.gui">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-messenger2.server.gui" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Messenger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ClientServerPython2.0</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="messenger2.html">messenger2 package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">ClientServerPython2.0</a><ul>
+  <li><a href="messenger2.html">messenger2 package</a><ul>
+  <li><a href="messenger2.server.html">messenger2.server package</a><ul>
+      <li>Previous: <a href="messenger2.server.html" title="previous chapter">messenger2.server package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Sergey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/messenger2.server.gui.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
